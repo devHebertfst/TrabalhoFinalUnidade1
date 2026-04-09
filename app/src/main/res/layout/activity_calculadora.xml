@@ -21,6 +21,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/btnVoltarCentral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Voltar para central"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtResultado" />
+
     <!-- Grade de botões -->
     <GridLayout
         android:id="@+id/gridButtons"
@@ -30,7 +39,7 @@
         android:columnCount="4"
         android:alignmentMode="alignMargins"
         android:useDefaultMargins="true"
-        app:layout_constraintTop_toBottomOf="@id/txtResultado"
+        app:layout_constraintTop_toBottomOf="@id/btnVoltarCentral"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

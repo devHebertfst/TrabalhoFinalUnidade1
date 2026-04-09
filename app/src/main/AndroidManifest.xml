@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabalhoFinalUnidade1">
         <activity
+            android:name=".BasqueteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalculadoraActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

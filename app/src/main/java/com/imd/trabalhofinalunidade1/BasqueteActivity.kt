@@ -1,19 +1,11 @@
 package com.imd.trabalhofinalunidade1
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 
 class BasqueteActivity : ComponentActivity() {
     private var pontuacaoTimeA: Int = 0
@@ -35,7 +27,7 @@ class BasqueteActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_basquete)
 
         val bDesfazer: Button = findViewById(R.id.desfazerPonto)
         bDesfazer.setOnClickListener { desfazerUltimoPonto() }
@@ -56,6 +48,7 @@ class BasqueteActivity : ComponentActivity() {
         val bDoisPontosTimeB: Button = findViewById(R.id.doisPontosB)
         val bTLivreTimeB: Button = findViewById(R.id.tiroLivreB)
         val bReiniciar: Button = findViewById(R.id.reiniciarPartida)
+        val bVoltarCentral: Button = findViewById(R.id.btnVoltarCentral)
 
 
         bTresPontosTimeA.setOnClickListener { adicionarPontos(3, "A") }
@@ -71,8 +64,17 @@ class BasqueteActivity : ComponentActivity() {
         bTLivreTimeB.setOnClickListener { adicionarPontos(1, "B") }
 
         bReiniciar.setOnClickListener { reiniciarPartida() }
+        bVoltarCentral.setOnClickListener { voltarParaCentral() }
 
 
+    }
+
+    private fun voltarParaCentral() {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+        startActivity(intent)
+        finish()
     }
 
     fun adicionarPontos(pontos: Int, time: String) {

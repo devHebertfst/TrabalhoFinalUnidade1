@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.TrabalhoFinalUnidade1" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Base.Theme.TrabalhoFinalUnidade1" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.TrabalhoFinalUnidade1" parent="Base.Theme.TrabalhoFinalUnidade1" />
 </resources>

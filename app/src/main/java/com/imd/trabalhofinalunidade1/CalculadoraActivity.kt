@@ -1,5 +1,6 @@
 package com.imd.trabalhofinalunidade1
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -49,8 +50,17 @@ class CalculadoraActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnIgual).setOnClickListener { onEquals() }
         findViewById<Button>(R.id.btnClear).setOnClickListener { clearAll() }
         findViewById<Button>(R.id.btnBackspace).setOnClickListener { backspace() }
+        findViewById<Button>(R.id.btnVoltarCentral).setOnClickListener { voltarParaCentral() }
 
         updateDisplay()
+    }
+
+    private fun voltarParaCentral() {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+        startActivity(intent)
+        finish()
     }
 
     private fun appendDigit(d: String) {
