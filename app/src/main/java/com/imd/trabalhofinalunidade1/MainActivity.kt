@@ -3,6 +3,7 @@ package com.imd.trabalhofinalunidade1
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         val btnBasquete: Button = findViewById(R.id.btnAbrirBasquete)
         val btnCalculadora: Button = findViewById(R.id.btnAbrirCalculadora)
+        val btnQuiz: Button = findViewById(R.id.btnAbrirQuiz)
 
         btnBasquete.setOnClickListener {
             val intent = Intent(this, BasqueteActivity::class.java)
@@ -22,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         btnCalculadora.setOnClickListener {
             val intent = Intent(this, CalculadoraActivity::class.java)
             startActivity(intent)
+        }
+
+        btnQuiz.setOnClickListener {
+            Toast.makeText(this, "Quiz em desenvolvimento", Toast.LENGTH_SHORT).show()
         }
     }
 }

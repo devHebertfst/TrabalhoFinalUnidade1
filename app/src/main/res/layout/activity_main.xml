@@ -35,4 +35,11 @@
         android:layout_marginTop="12dp"
         android:text="Abrir Calculadora" />
 
+    <Button
+        android:id="@+id/btnAbrirQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Abrir Quiz" />
+
 </LinearLayout>
