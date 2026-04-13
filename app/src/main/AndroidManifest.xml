@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabalhoFinalUnidade1">
         <activity
+            android:name=".QuizCategoriasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuizMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuizActivity"
+            android:exported="false" />
+        <activity
             android:name=".BasqueteActivity"
             android:exported="false" />
         <activity

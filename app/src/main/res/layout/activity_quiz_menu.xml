@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#FFF7E8"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFB347"
+        android:gravity="center"
+        android:padding="18dp"
+        android:text="Desafio de Quiz"
+        android:textColor="#3B2200"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:text="Escolha as categorias e responda as perguntas"
+        android:textColor="#6B4B1F"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnIniciarQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#E07A1F"
+        android:text="Iniciar Quiz" />
+
+    <Button
+        android:id="@+id/btnVoltarCentralQuizMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#8C6239"
+        android:text="Voltar para central" />
+
+</LinearLayout>
