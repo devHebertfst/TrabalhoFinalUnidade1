@@ -32,6 +32,12 @@
             android:text="Pergunta 1 de 3"
             android:textColor="#6B4B1F" />
 
+        <ProgressBar
+            android:id="@+id/txtProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/txtPontuacaoQuiz"
             android:layout_width="match_parent"

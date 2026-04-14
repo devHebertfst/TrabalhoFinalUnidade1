@@ -3,6 +3,7 @@ package com.imd.trabalhofinalunidade1
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -28,6 +29,8 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var btnProxima: Button
     private lateinit var btnReiniciar: Button
 
+    private lateinit var txtProgressBar: ProgressBar
+
     private val bancoPerguntas = listOf(
         Question(
             categoria = "Geografia",
@@ -40,6 +43,12 @@ class QuizActivity : AppCompatActivity() {
             enunciado = "Quanto e 7 x 8?",
             alternativas = listOf("54", "56", "58", "64"),
             correta = "56"
+        ),
+        Question(
+            categoria = "Matematica",
+            enunciado = "Quanto é 10X10?",
+            alternativas = listOf("1000", "10", "35", "100"),
+            correta = "100"
         ),
         Question(
             categoria = "Ciencia",
@@ -55,6 +64,7 @@ class QuizActivity : AppCompatActivity() {
     private var indiceAtual = 0
     private var pontuacao = 0
     private var respondeuAtual = false
+    private var qtdPerguntas = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +75,7 @@ class QuizActivity : AppCompatActivity() {
         tvProgresso = findViewById(R.id.txtProgressoQuiz)
         tvPontuacao = findViewById(R.id.txtPontuacaoQuiz)
         tvStatus = findViewById(R.id.txtStatusQuiz)
+        txtProgressBar = findViewById(R.id.txtProgressBar)
 
         btnOpcao1 = findViewById(R.id.btnOpcao1)
         btnOpcao2 = findViewById(R.id.btnOpcao2)
@@ -75,6 +86,9 @@ class QuizActivity : AppCompatActivity() {
 
         categoriasSelecionadas = intent.getStringArrayListExtra("categorias") ?: emptyList()
         perguntas = filtrarPerguntas(categoriasSelecionadas)
+
+        qtdPerguntas = perguntas.size
+        txtProgressBar.max=qtdPerguntas
 
         val botoesOpcoes = listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4)
         botoesOpcoes.forEach { botao ->
@@ -140,6 +154,8 @@ class QuizActivity : AppCompatActivity() {
             tvStatus.text = "Resposta errada. Correta: ${perguntaAtual.correta}"
         }
 
+        atualizarProgresso(indiceAtual+1)
+
         mostrarPergunta()
     }
 
@@ -167,6 +183,7 @@ class QuizActivity : AppCompatActivity() {
         perguntas = filtrarPerguntas(categoriasSelecionadas)
         mostrarPergunta()
         tvStatus.text = "Quiz reiniciado"
+        txtProgressBar.progress = 0
     }
 
     private fun voltarParaCentral() {
@@ -191,5 +208,9 @@ class QuizActivity : AppCompatActivity() {
         } else {
             bancoPerguntas.filter { it.categoria in categorias }
         }
+    }
+
+    private fun atualizarProgresso(perguntaAtual: Int) {
+        txtProgressBar.progress = perguntaAtual
     }
 }
