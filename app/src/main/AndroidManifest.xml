@@ -10,33 +10,44 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TrabalhoFinalUnidade1">
-        <activity
-            android:name=".QuizCategoriasActivity"
-            android:exported="false" />
-        <activity
-            android:name=".QuizMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".QuizActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BasqueteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CalculadoraActivity"
-            android:exported="false" />
+        android:theme="@style/Theme.Hub">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.TrabalhoFinalUnidade1">
+            android:theme="@style/Theme.Hub">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".BasqueteActivity"
+            android:theme="@style/Theme.Basquete"
+            android:exported="false" />
+
+        <activity
+            android:name=".CalculadoraActivity"
+            android:theme="@style/Theme.Calculadora"
+            android:exported="false" />
+
+        <activity
+            android:name=".QuizMenuActivity"
+            android:theme="@style/Theme.Quiz"
+            android:exported="false" />
+
+        <activity
+            android:name=".QuizCategoriasActivity"
+            android:theme="@style/Theme.Quiz"
+            android:exported="false" />
+
+        <activity
+            android:name=".QuizActivity"
+            android:theme="@style/Theme.Quiz"
+            android:exported="false" />
+
     </application>
 
 </manifest>
