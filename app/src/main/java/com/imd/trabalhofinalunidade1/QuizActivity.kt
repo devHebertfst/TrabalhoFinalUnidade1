@@ -1,7 +1,9 @@
 package com.imd.trabalhofinalunidade1
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -32,6 +34,10 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var btnReiniciar: Button
 
     private lateinit var txtProgressBar: ProgressBar
+
+    private lateinit var time : CountDownTimer
+
+    private lateinit var textTime : TextView
 
     private val bancoPerguntas = listOf(
 
@@ -80,6 +86,9 @@ class QuizActivity : AppCompatActivity() {
     private var respondeuAtual = false
     private var qtdPerguntas = 0
 
+    private var timeInicio: Long = 0
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, true)
@@ -92,6 +101,7 @@ class QuizActivity : AppCompatActivity() {
         tvPontuacao = findViewById(R.id.txtPontuacaoQuiz)
         tvStatus = findViewById(R.id.txtStatusQuiz)
         txtProgressBar = findViewById(R.id.txtProgressBar)
+        textTime = findViewById(R.id.textTime)
 
         btnOpcao1 = findViewById(R.id.btnOpcao1)
         btnOpcao2 = findViewById(R.id.btnOpcao2)
@@ -105,6 +115,8 @@ class QuizActivity : AppCompatActivity() {
 
         qtdPerguntas = perguntas.size
         txtProgressBar.max=qtdPerguntas
+
+        iniciarTime()
 
         val botoesOpcoes = listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4)
         botoesOpcoes.forEach { botao ->
@@ -159,6 +171,8 @@ class QuizActivity : AppCompatActivity() {
     private fun responder(respostaEscolhida: String) {
         if (respondeuAtual) return
 
+        time.cancel()
+
         val perguntaAtual = perguntas[indiceAtual]
         respondeuAtual = true
 
@@ -175,6 +189,7 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun avancarPergunta() {
+
         if (!respondeuAtual) {
             tvStatus.text = "Selecione uma alternativa antes de continuar"
             return
@@ -184,7 +199,10 @@ class QuizActivity : AppCompatActivity() {
             indiceAtual++
             respondeuAtual = false
             mostrarPergunta()
+            time.cancel()
+            atualizarTime()
         } else {
+            time.cancel()
             tvStatus.text = "Quiz finalizado. Pontuacao: $pontuacao de ${perguntas.size}"
             btnProxima.isEnabled = false
             listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4).forEach { it.isEnabled = false }
@@ -199,6 +217,7 @@ class QuizActivity : AppCompatActivity() {
         mostrarPergunta()
         tvStatus.text = "Quiz reiniciado"
         txtProgressBar.progress = 0
+        iniciarTime()
     }
 
     private fun voltarParaCentral() {
@@ -228,5 +247,25 @@ class QuizActivity : AppCompatActivity() {
 
     private fun atualizarProgresso(perguntaAtual: Int) {
         txtProgressBar.progress = perguntaAtual
+    }
+
+    private fun iniciarTime() {
+         timeInicio = System.currentTimeMillis()
+
+        atualizarTime()
+    }
+
+    private fun atualizarTime() {
+        time = object : CountDownTimer(30000L, 1000L) {
+            override fun onFinish() {
+                avancarPergunta()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                val segundos = millisUntilFinished / 1000
+                textTime.text = segundos.toString()
+            }
+        }
+        time.start()
     }
 }
