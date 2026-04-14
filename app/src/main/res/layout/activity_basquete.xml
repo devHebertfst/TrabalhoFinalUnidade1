@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fundo_basquete"
-    tools:context="com.seu.pacote">
-
+    android:fitsSystemWindows="true"
+    tools:context=".BasqueteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <!-- Time A -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -27,13 +28,13 @@
                     android:id="@+id/timeA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#CC000000"
+                    android:background="@color/transparent_black"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
-                    android:padding="30dp"
-                    android:text="Time A"
-                    android:textColor="#FF0000"
-                    android:textSize="14sp" />
+                    android:padding="@dimen/basquete_team_padding"
+                    android:text="@string/basquete_time_a"
+                    android:textColor="@color/basquete_team_a"
+                    android:textSize="@dimen/text_sm" />
 
                 <TextView
                     android:id="@+id/placarTimeA"
@@ -41,37 +42,36 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
-                    android:padding="4dp"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="54sp" />
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/basquete_placar_inicial"
+                    android:textColor="@color/basquete_score_text"
+                    android:textSize="@dimen/text_display_lg" />
 
                 <Button
                     android:id="@+id/tresPontosA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#FF0000"
-                    android:text="+3 PONTOS"
+                    android:layout_margin="@dimen/basquete_btn_margin"
+                    android:background="@color/basquete_team_a"
+                    android:text="@string/basquete_btn_tres"
                     android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/doisPontosA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#FF0000"
-                    android:text="+2 PONTOS"
+                    android:layout_margin="@dimen/basquete_btn_margin"
+                    android:background="@color/basquete_team_a"
+                    android:text="@string/basquete_btn_dois"
                     android:textColor="@color/white" />
-
 
                 <Button
                     android:id="@+id/tiroLivreA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#FF0000"
-                    android:text="Tiro Livre"
+                    android:layout_margin="@dimen/basquete_btn_margin"
+                    android:background="@color/basquete_team_a"
+                    android:text="@string/basquete_btn_livre"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -79,9 +79,10 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="16dp"/>
+                android:background="@color/basquete_divider"
+                android:layout_marginTop="@dimen/basquete_divider_margin_top" />
 
+            <!-- Time B -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -92,13 +93,13 @@
                     android:id="@+id/timeB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#CC000000"
+                    android:background="@color/transparent_black"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
-                    android:padding="30dp"
-                    android:text="Time B"
-                    android:textColor="#0000FF"
-                    android:textSize="14sp" />
+                    android:padding="@dimen/basquete_team_padding"
+                    android:text="@string/basquete_time_b"
+                    android:textColor="@color/basquete_team_b"
+                    android:textSize="@dimen/text_sm" />
 
                 <TextView
                     android:id="@+id/placarTimeB"
@@ -106,101 +107,102 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:gravity="center"
-                    android:padding="4dp"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="54sp" />
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/basquete_placar_inicial"
+                    android:textColor="@color/basquete_score_text"
+                    android:textSize="@dimen/text_display_lg" />
 
                 <Button
                     android:id="@+id/tresPontosB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#0000FF"
-                    android:text="+3 PONTOS"
+                    android:layout_margin="@dimen/basquete_btn_margin"
+                    android:background="@color/basquete_team_b"
+                    android:text="@string/basquete_btn_tres"
                     android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/doisPontosB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#0000FF"
-                    android:text="+2 PONTOS"
+                    android:layout_margin="@dimen/basquete_btn_margin"
+                    android:background="@color/basquete_team_b"
+                    android:text="@string/basquete_btn_dois"
                     android:textColor="@color/white" />
-
 
                 <Button
                     android:id="@+id/tiroLivreB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#0000FF"
-                    android:text="Tiro Livre"
+                    android:layout_margin="@dimen/basquete_btn_margin"
+                    android:background="@color/basquete_team_b"
+                    android:text="@string/basquete_btn_livre"
                     android:textColor="@color/white" />
+
             </LinearLayout>
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/diferencaPlacar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="12dp"
-            android:text="Empate"
-            android:textSize="18sp"
-            android:textColor="@color/white"
+            android:padding="@dimen/spacing_md"
+            android:text="@string/basquete_empate"
+            android:textSize="@dimen/text_lg"
+            android:textColor="@color/basquete_diff_text"
             android:textStyle="bold"
-            android:layout_marginTop="26dp"
-            android:fontFamily="sans-serif"/>
+            android:layout_marginTop="@dimen/basquete_diferenca_margin_top"
+            android:fontFamily="sans-serif" />
 
         <TextView
             android:id="@+id/quartoAtual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
-            android:text="1º Quarto"
-            android:textSize="20sp"
-            android:textColor="@color/white"
+            android:padding="@dimen/spacing_sm"
+            android:text="@string/basquete_quarto_inicial"
+            android:textSize="@dimen/text_xl"
+            android:textColor="@color/basquete_quarter_text"
             android:textStyle="bold"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="sans-serif" />
 
         <TextView
             android:id="@+id/historicoQuartos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif"/>
+            android:padding="@dimen/spacing_sm"
+            android:textSize="@dimen/text_sm"
+            android:textColor="@color/basquete_history_text"
+            android:fontFamily="sans-serif" />
 
         <Button
             android:id="@+id/desfazerPonto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Desfazer Último Ponto"
-            android:backgroundTint="#FF8800"/>
+            android:layout_margin="@dimen/basquete_btn_margin"
+            android:text="@string/basquete_btn_desfazer"
+            android:backgroundTint="@color/basquete_undo" />
 
         <Button
             android:id="@+id/btnVoltarCentral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:text="Voltar para central" />
+            android:layout_margin="@dimen/basquete_btn_margin"
+            android:text="@string/btn_voltar_central" />
 
         <Button
             android:id="@+id/encerrarQuarto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/basquete_btn_margin"
             android:padding="15dp"
             android:shadowRadius="10"
-            android:text="Encerrar Quarto" />
+            android:text="@string/basquete_btn_encerrar" />
 
     </LinearLayout>
 
@@ -210,7 +212,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="32dp"
+        android:layout_margin="@dimen/basquete_reiniciar_margin"
         android:background="@drawable/botao_reiniciar"
-        android:text="Reiniciar Partida" />
+        android:text="@string/basquete_btn_reiniciar" />
+
 </RelativeLayout>

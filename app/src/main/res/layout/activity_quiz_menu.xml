@@ -4,43 +4,45 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#FFF7E8"
-    android:padding="24dp">
+    android:background="@color/quiz_bg"
+    android:padding="@dimen/quiz_padding">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFB347"
+        android:background="@color/quiz_header_bg"
         android:gravity="center"
-        android:padding="18dp"
-        android:text="Desafio de Quiz"
-        android:textColor="#3B2200"
-        android:textSize="28sp"
+        android:padding="@dimen/quiz_header_padding_lg"
+        android:text="@string/quiz_titulo"
+        android:textColor="@color/quiz_text_header"
+        android:textSize="@dimen/text_display_sm"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/spacing_lg"
         android:gravity="center"
-        android:text="Escolha as categorias e responda as perguntas"
-        android:textColor="#6B4B1F"
-        android:textSize="16sp" />
+        android:text="@string/quiz_subtitulo"
+        android:textColor="@color/quiz_text_body"
+        android:textSize="@dimen/text_md" />
 
     <Button
         android:id="@+id/btnIniciarQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#E07A1F"
-        android:text="Iniciar Quiz" />
+        android:layout_marginTop="@dimen/spacing_xxl"
+        android:backgroundTint="@color/quiz_btn_primary"
+        android:text="@string/quiz_btn_iniciar"
+        android:textColor="@color/quiz_btn_text" />
 
     <Button
         android:id="@+id/btnVoltarCentralQuizMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#8C6239"
-        android:text="Voltar para central" />
+        android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+        android:backgroundTint="@color/quiz_btn_secondary"
+        android:text="@string/btn_voltar_central"
+        android:textColor="@color/quiz_btn_text" />
 
 </LinearLayout>
