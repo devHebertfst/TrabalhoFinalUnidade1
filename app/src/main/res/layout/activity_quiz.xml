@@ -48,6 +48,13 @@
             android:textColor="#6B4B1F" />
 
         <TextView
+            android:id="@+id/textTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Time" />
+
+        <TextView
             android:id="@+id/txtPerguntaQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
