@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Espaçamentos gerais -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_xl">24dp</dimen>
+    <dimen name="spacing_xxl">32dp</dimen>
+
+    <!-- Tipografia -->
+    <dimen name="text_sm">14sp</dimen>
+    <dimen name="text_md">16sp</dimen>
+    <dimen name="text_lg">18sp</dimen>
+    <dimen name="text_xl">20sp</dimen>
+    <dimen name="text_xxl">24sp</dimen>
+    <dimen name="text_display_sm">28sp</dimen>
+    <dimen name="text_display_md">32sp</dimen>
+    <dimen name="text_display_lg">54sp</dimen>
+
+    <!-- Hub -->
+    <dimen name="hub_padding">24dp</dimen>
+    <dimen name="hub_btn_margin_top">12dp</dimen>
+    <dimen name="hub_btn_first_margin_top">32dp</dimen>
+
+    <!-- Basquete -->
+    <dimen name="basquete_team_padding">30dp</dimen>
+    <dimen name="basquete_btn_margin">8dp</dimen>
+    <dimen name="basquete_divider_margin_top">16dp</dimen>
+    <dimen name="basquete_reiniciar_margin">32dp</dimen>
+    <dimen name="basquete_diferenca_margin_top">26dp</dimen>
+
+    <!-- Calculadora -->
+    <dimen name="calc_display_padding">16dp</dimen>
+    <dimen name="calc_grid_margin_top">12dp</dimen>
+
+    <!-- Quiz -->
+    <dimen name="quiz_padding">24dp</dimen>
+    <dimen name="quiz_header_padding">14dp</dimen>
+    <dimen name="quiz_header_padding_lg">18dp</dimen>
+    <dimen name="quiz_btn_margin_top_sm">12dp</dimen>
+    <dimen name="quiz_btn_margin_top_md">24dp</dimen>
+    <dimen name="quiz_pergunta_min_height">140dp</dimen>
+    <dimen name="quiz_pergunta_padding">20dp</dimen>
+    <dimen name="quiz_pergunta_margin_top">24dp</dimen>
+    <dimen name="quiz_checkbox_padding">14dp</dimen>
+    <dimen name="quiz_checkbox_margin_top">28dp</dimen>
+    <dimen name="quiz_checkbox_margin_top_sm">12dp</dimen>
+</resources>

@@ -2,25 +2,26 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF7E8">
+    android:background="@color/quiz_bg"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/quiz_padding">
 
         <TextView
             android:id="@+id/txtCategoriaQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFB347"
+            android:background="@color/quiz_header_bg"
             android:gravity="center"
-            android:padding="14dp"
+            android:padding="@dimen/quiz_header_padding"
             android:text="Categorias: Geografia"
-            android:textColor="#3B2200"
-            android:textSize="18sp"
+            android:textColor="@color/quiz_text_header"
+            android:textSize="@dimen/text_lg"
             android:textStyle="bold" />
 
         <TextView
@@ -30,7 +31,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="Pergunta 1 de 3"
-            android:textColor="#6B4B1F" />
+            android:textColor="@color/quiz_text_body" />
 
         <ProgressBar
             android:id="@+id/txtProgressBar"
@@ -42,90 +43,97 @@
             android:id="@+id/txtPontuacaoQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:gravity="center"
             android:text="Pontuacao: 0"
-            android:textColor="#6B4B1F" />
+            android:textColor="@color/quiz_text_body" />
 
         <TextView
             android:id="@+id/txtPerguntaQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="#FFFFFBF2"
+            android:layout_marginTop="@dimen/quiz_pergunta_margin_top"
+            android:background="@color/quiz_card_bg"
             android:gravity="center"
-            android:minHeight="140dp"
-            android:padding="20dp"
+            android:minHeight="@dimen/quiz_pergunta_min_height"
+            android:padding="@dimen/quiz_pergunta_padding"
             android:text="Pergunta do quiz"
-            android:textColor="#2F1B05"
-            android:textSize="22sp"
+            android:textColor="@color/quiz_text_question"
+            android:textSize="@dimen/text_xxl"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtStatusQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/spacing_md"
             android:gravity="center"
-            android:text="Selecione uma alternativa"
-            android:textColor="#8A3B12"
+            android:text="@string/quiz_selecione_alternativa"
+            android:textColor="@color/quiz_text_status"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnOpcao1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#E07A1F"
-            android:text="Opcao 1" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_md"
+            android:backgroundTint="@color/quiz_btn_primary"
+            android:text="Opcao 1"
+            android:textColor="@color/quiz_btn_text" />
 
         <Button
             android:id="@+id/btnOpcao2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E07A1F"
-            android:text="Opcao 2" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+            android:backgroundTint="@color/quiz_btn_primary"
+            android:text="Opcao 2"
+            android:textColor="@color/quiz_btn_text" />
 
         <Button
             android:id="@+id/btnOpcao3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E07A1F"
-            android:text="Opcao 3" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+            android:backgroundTint="@color/quiz_btn_primary"
+            android:text="Opcao 3"
+            android:textColor="@color/quiz_btn_text" />
 
         <Button
             android:id="@+id/btnOpcao4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E07A1F"
-            android:text="Opcao 4" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+            android:backgroundTint="@color/quiz_btn_primary"
+            android:text="Opcao 4"
+            android:textColor="@color/quiz_btn_text" />
 
         <Button
             android:id="@+id/btnProximaPergunta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#8C6239"
-            android:text="Proxima pergunta" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_md"
+            android:backgroundTint="@color/quiz_btn_secondary"
+            android:text="@string/quiz_btn_proxima"
+            android:textColor="@color/quiz_btn_text" />
 
         <Button
             android:id="@+id/btnReiniciarQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#A66C2C"
-            android:text="Reiniciar quiz" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+            android:backgroundTint="@color/quiz_btn_tertiary"
+            android:text="@string/quiz_btn_reiniciar"
+            android:textColor="@color/quiz_btn_text" />
 
         <Button
             android:id="@+id/btnVoltarCentralQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#5E4323"
-            android:text="Voltar para central" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+            android:backgroundTint="@color/quiz_btn_back"
+            android:text="@string/btn_voltar_central"
+            android:textColor="@color/quiz_btn_text" />
 
     </LinearLayout>
 </ScrollView>

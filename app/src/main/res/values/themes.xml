@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <style name="Base.Theme.TrabalhoFinalUnidade1" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Hub -->
+    <style name="Theme.Hub" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/hub_bg</item>
+        <item name="android:textColor">@color/hub_text_primary</item>
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
     </style>
 
-    <style name="Theme.TrabalhoFinalUnidade1" parent="Base.Theme.TrabalhoFinalUnidade1" />
+    <!-- Basquete -->
+    <style name="Theme.Basquete" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/basquete_team_a</item>
+    </style>
+
+    <!-- Calculadora -->
+    <style name="Theme.Calculadora" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/hub_bg</item>
+        <item name="android:textColor">@color/hub_text_primary</item>
+        <item name="colorPrimary">@color/calc_btn_op_bg</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <!-- Quiz -->
+    <style name="Theme.Quiz" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/quiz_bg</item>
+        <item name="android:textColor">@color/quiz_text_body</item>
+        <item name="colorPrimary">@color/quiz_btn_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
 </resources>

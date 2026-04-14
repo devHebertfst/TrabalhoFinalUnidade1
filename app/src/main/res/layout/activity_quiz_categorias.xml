@@ -2,92 +2,95 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF7E8">
+    android:fitsSystemWindows="true"
+    android:background="@color/quiz_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/quiz_padding">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFB347"
+            android:background="@color/quiz_header_bg"
             android:gravity="center"
-            android:padding="18dp"
-            android:text="Selecionar categorias"
-            android:textColor="#3B2200"
-            android:textSize="26sp"
+            android:padding="@dimen/quiz_header_padding_lg"
+            android:text="@string/quiz_selecionar_categorias"
+            android:textColor="@color/quiz_text_header"
+            android:textSize="@dimen/text_xxl"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:gravity="center"
-            android:text="Voce pode marcar uma ou varias categorias"
-            android:textColor="#6B4B1F"
-            android:textSize="16sp" />
+            android:text="@string/quiz_instrucao_categorias"
+            android:textColor="@color/quiz_text_body"
+            android:textSize="@dimen/text_md" />
 
         <CheckBox
             android:id="@+id/cbCategoriaGeografia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:background="#FFFFFBF2"
-            android:padding="14dp"
-            android:text="Geografia"
-            android:textColor="#3B2200"
-            android:textSize="18sp" />
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_geografia"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_lg" />
 
         <CheckBox
             android:id="@+id/cbCategoriaMatematica"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="#FFFFFBF2"
-            android:padding="14dp"
-            android:text="Matematica"
-            android:textColor="#3B2200"
-            android:textSize="18sp" />
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top_sm"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_matematica"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_lg" />
 
         <CheckBox
             android:id="@+id/cbCategoriaCiencia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="#FFFFFBF2"
-            android:padding="14dp"
-            android:text="Ciencia"
-            android:textColor="#3B2200"
-            android:textSize="18sp" />
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top_sm"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_ciencia"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_lg" />
 
         <TextView
             android:id="@+id/txtStatusCategorias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:gravity="center"
-            android:text="Marque pelo menos uma categoria"
-            android:textColor="#8A3B12"
+            android:text="@string/quiz_status_min_categoria"
+            android:textColor="@color/quiz_text_status"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnIniciarCategorias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#E07A1F"
-            android:text="Comecar quiz" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_md"
+            android:backgroundTint="@color/quiz_btn_primary"
+            android:text="@string/quiz_btn_comecar"
+            android:textColor="@color/quiz_btn_text" />
 
         <Button
             android:id="@+id/btnVoltarMenuQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#8C6239"
-            android:text="Voltar" />
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+            android:backgroundTint="@color/quiz_btn_secondary"
+            android:text="@string/quiz_btn_voltar_menu"
+            android:textColor="@color/quiz_btn_text" />
 
     </LinearLayout>
 </ScrollView>

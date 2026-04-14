@@ -3,31 +3,54 @@ package com.imd.trabalhofinalunidade1
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.WindowCompat
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_main)
 
         val btnBasquete: Button = findViewById(R.id.btnAbrirBasquete)
         val btnCalculadora: Button = findViewById(R.id.btnAbrirCalculadora)
         val btnQuiz: Button = findViewById(R.id.btnAbrirQuiz)
 
+        val btnTema: ImageButton = findViewById(R.id.btnAlternarTema)
+
+        val isNightMode = resources.configuration.uiMode and
+                android.content.res.Configuration.UI_MODE_NIGHT_MASK ==
+                android.content.res.Configuration.UI_MODE_NIGHT_YES
+
+        btnTema.setImageResource(
+            if (isNightMode) R.drawable.ic_light_mode else R.drawable.ic_dark_mode
+        )
+
+        btnTema.setOnClickListener {
+            val nightModeAtivo = resources.configuration.uiMode and
+                    android.content.res.Configuration.UI_MODE_NIGHT_MASK ==
+                    android.content.res.Configuration.UI_MODE_NIGHT_YES
+
+            if (nightModeAtivo) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+
         btnBasquete.setOnClickListener {
-            val intent = Intent(this, BasqueteActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, BasqueteActivity::class.java))
         }
 
         btnCalculadora.setOnClickListener {
-            val intent = Intent(this, CalculadoraActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CalculadoraActivity::class.java))
         }
 
         btnQuiz.setOnClickListener {
-            val intent = Intent(this, QuizMenuActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, QuizMenuActivity::class.java))
         }
     }
 }
