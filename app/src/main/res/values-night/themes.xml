@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hub -->
+    <color name="hub_bg">@color/dark_bg</color>
+    <color name="hub_text_primary">@color/dark_text_primary</color>
+    <color name="hub_text_secondary">@color/dark_text_secondary</color>
+    <color name="hub_card_bg">@color/dark_surface</color>
+
+    <!-- Calculadora -->
+    <color name="calc_display_bg">@color/dark_surface_2</color>
+    <color name="calc_display_text">@color/dark_text_primary</color>
+    <color name="calc_btn_number_bg">@color/dark_surface</color>
+    <color name="calc_btn_number_text">@color/dark_text_primary</color>
+    <color name="calc_btn_action_bg">@color/dark_surface_2</color>
+    <color name="calc_btn_action_text">@color/dark_text_primary</color>
+
+    <!-- Quiz -->
+    <color name="quiz_bg">@color/dark_surface</color>
+    <color name="quiz_header_bg">#FF7A4A00</color>
+    <color name="quiz_text_header">@color/dark_text_primary</color>
+    <color name="quiz_text_body">@color/dark_text_secondary</color>
+    <color name="quiz_text_question">@color/dark_text_primary</color>
+    <color name="quiz_text_status">#FFFFAA66</color>
+    <color name="quiz_card_bg">@color/dark_surface_2</color>
+    <color name="quiz_checkbox_bg">@color/dark_surface_2</color>
+    <color name="quiz_checkbox_text">@color/dark_text_primary</color>
+</resources>
