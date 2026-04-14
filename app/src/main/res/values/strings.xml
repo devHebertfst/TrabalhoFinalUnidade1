@@ -1,3 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TrabalhoFinalUnidade1</string>
+    <string name="app_name">Hub de Apps</string>
+
+    <!-- Hub -->
+    <string name="hub_title">Central de Apps</string>
+    <string name="hub_subtitle">Escolha uma opção</string>
+    <string name="hub_btn_basquete">Placar de Basquete</string>
+    <string name="hub_btn_calculadora">Calculadora</string>
+    <string name="hub_btn_quiz">Quiz</string>
+    <string name="btn_voltar_central">Voltar para central</string>
+
+    <!-- Basquete -->
+    <string name="basquete_time_a">Time A</string>
+    <string name="basquete_time_b">Time B</string>
+    <string name="basquete_placar_inicial">0</string>
+    <string name="basquete_btn_tres">+3 PONTOS</string>
+    <string name="basquete_btn_dois">+2 PONTOS</string>
+    <string name="basquete_btn_livre">Tiro Livre</string>
+    <string name="basquete_btn_desfazer">Desfazer Último Ponto</string>
+    <string name="basquete_btn_encerrar">Encerrar Quarto</string>
+    <string name="basquete_btn_reiniciar">Reiniciar Partida</string>
+    <string name="basquete_empate">Empate</string>
+    <string name="basquete_quarto_inicial">1º Quarto</string>
+    <string name="basquete_msg_reiniciado">Placar reiniciado</string>
+    <string name="basquete_msg_desfeito">Último ponto desfeito</string>
+    <string name="basquete_msg_nada_desfazer">Nada para desfazer</string>
+    <string name="basquete_partida_encerrada">Partida Encerrada!</string>
+
+    <!-- Calculadora -->
+    <string name="calc_display_inicial">0</string>
+    <string name="calc_btn_clear">C</string>
+    <string name="calc_btn_backspace">⌫</string>
+    <string name="calc_btn_dividir">÷</string>
+    <string name="calc_btn_multiplicar">×</string>
+    <string name="calc_btn_subtrair">−</string>
+    <string name="calc_btn_somar">+</string>
+    <string name="calc_btn_igual">=</string>
+    <string name="calc_btn_ponto">.</string>
+    <string name="calc_titulo">Calculadora</string>
+    <string name="calc_erro_divisao_zero">Divisão por zero</string>
+
+    <!-- Quiz -->
+    <string name="quiz_titulo">Desafio de Quiz</string>
+    <string name="quiz_subtitulo">Escolha as categorias e responda as perguntas</string>
+    <string name="quiz_btn_iniciar">Iniciar Quiz</string>
+    <string name="quiz_btn_proxima">Próxima pergunta</string>
+    <string name="quiz_btn_reiniciar">Reiniciar quiz</string>
+    <string name="quiz_selecione_alternativa">Selecione uma alternativa</string>
+    <string name="quiz_selecionar_categorias">Selecionar categorias</string>
+    <string name="quiz_instrucao_categorias">Você pode marcar uma ou várias categorias</string>
+    <string name="quiz_status_min_categoria">Marque pelo menos uma categoria</string>
+    <string name="quiz_btn_comecar">Começar quiz</string>
+    <string name="quiz_btn_voltar_menu">Voltar</string>
+    <string name="quiz_categoria_geografia">Geografia</string>
+    <string name="quiz_categoria_matematica">Matemática</string>
+    <string name="quiz_categoria_ciencia">Ciência</string>
+    <string name="quiz_reiniciado">Quiz reiniciado</string>
+    <string name="basquete_vencendo_a">Time A está vencendo por %d pts</string>
+    <string name="basquete_vencendo_b">Time B está vencendo por %d pts</string>
 </resources>
