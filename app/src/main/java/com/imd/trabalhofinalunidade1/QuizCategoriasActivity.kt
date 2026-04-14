@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 
 class QuizCategoriasActivity : AppCompatActivity() {
 
@@ -16,6 +17,7 @@ class QuizCategoriasActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_quiz_categorias)
 
         cbGeografia = findViewById(R.id.cbCategoriaGeografia)

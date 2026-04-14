@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.core.view.WindowCompat
 
 class BasqueteActivity : ComponentActivity() {
     private var pontuacaoTimeA: Int = 0
@@ -27,6 +28,7 @@ class BasqueteActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_basquete)
 
         val bDesfazer: Button = findViewById(R.id.desfazerPonto)
