@@ -40,7 +40,63 @@
             android:padding="@dimen/quiz_checkbox_padding"
             android:text="@string/quiz_categoria_geografia"
             android:textColor="@color/quiz_checkbox_text"
-            android:textSize="@dimen/text_lg" />
+            android:textSize="@dimen/text_sm" />
+
+        <CheckBox
+            android:id="@+id/cbCategoriaEsporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_esporte"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_sm" />
+
+        <CheckBox
+            android:id="@+id/cbCategoriaPortugues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_portugues"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_sm" />
+
+        <CheckBox
+            android:id="@+id/cbCategoriaTecnologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_tecnologia"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_sm" />
+
+        <CheckBox
+            android:id="@+id/cbCategoriaEntretenimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_entretenimento"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_sm" />
+
+        <CheckBox
+            android:id="@+id/cbCategoriaHistoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quiz_checkbox_margin_top"
+            android:background="@color/quiz_checkbox_bg"
+            android:padding="@dimen/quiz_checkbox_padding"
+            android:text="@string/quiz_categoria_historia"
+            android:textColor="@color/quiz_checkbox_text"
+            android:textSize="@dimen/text_sm" />
+
 
         <CheckBox
             android:id="@+id/cbCategoriaMatematica"
@@ -51,7 +107,7 @@
             android:padding="@dimen/quiz_checkbox_padding"
             android:text="@string/quiz_categoria_matematica"
             android:textColor="@color/quiz_checkbox_text"
-            android:textSize="@dimen/text_lg" />
+            android:textSize="@dimen/text_sm" />
 
         <CheckBox
             android:id="@+id/cbCategoriaCiencia"
@@ -62,7 +118,7 @@
             android:padding="@dimen/quiz_checkbox_padding"
             android:text="@string/quiz_categoria_ciencia"
             android:textColor="@color/quiz_checkbox_text"
-            android:textSize="@dimen/text_lg" />
+            android:textSize="@dimen/text_sm" />
 
         <TextView
             android:id="@+id/txtStatusCategorias"

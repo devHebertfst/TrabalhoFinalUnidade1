@@ -55,6 +55,11 @@
     <string name="quiz_categoria_geografia">Geografia</string>
     <string name="quiz_categoria_matematica">Matemática</string>
     <string name="quiz_categoria_ciencia">Ciência</string>
+    <string name="quiz_categoria_esporte">Esportes</string>
+    <string name="quiz_categoria_portugues">Português</string>
+    <string name="quiz_categoria_tecnologia">Tecnologia</string>
+    <string name="quiz_categoria_entretenimento">Entretenimento</string>
+    <string name="quiz_categoria_historia">História</string>
     <string name="quiz_reiniciado">Quiz reiniciado</string>
     <string name="basquete_vencendo_a">Time A está vencendo por %d pts</string>
     <string name="basquete_vencendo_b">Time B está vencendo por %d pts</string>

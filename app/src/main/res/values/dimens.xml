@@ -37,13 +37,13 @@
     <!-- Quiz -->
     <dimen name="quiz_padding">24dp</dimen>
     <dimen name="quiz_header_padding">14dp</dimen>
-    <dimen name="quiz_header_padding_lg">18dp</dimen>
-    <dimen name="quiz_btn_margin_top_sm">12dp</dimen>
+    <dimen name="quiz_header_padding_lg">9dp</dimen>
+    <dimen name="quiz_btn_margin_top_sm">4dp</dimen>
     <dimen name="quiz_btn_margin_top_md">24dp</dimen>
     <dimen name="quiz_pergunta_min_height">140dp</dimen>
     <dimen name="quiz_pergunta_padding">20dp</dimen>
-    <dimen name="quiz_pergunta_margin_top">24dp</dimen>
-    <dimen name="quiz_checkbox_padding">14dp</dimen>
-    <dimen name="quiz_checkbox_margin_top">28dp</dimen>
+    <dimen name="quiz_pergunta_margin_top">12dp</dimen>
+    <dimen name="quiz_checkbox_padding">6dp</dimen>
+    <dimen name="quiz_checkbox_margin_top">12dp</dimen>
     <dimen name="quiz_checkbox_margin_top_sm">12dp</dimen>
 </resources>
