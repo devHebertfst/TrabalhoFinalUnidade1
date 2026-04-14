@@ -14,7 +14,8 @@ class QuizActivity : AppCompatActivity() {
         val categoria: String,
         val enunciado: String,
         val alternativas: List<String>,
-        val correta: String
+        val correta: String,
+        val nivel: String
     )
 
     private lateinit var tvCategoria: TextView
@@ -33,30 +34,42 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var txtProgressBar: ProgressBar
 
     private val bancoPerguntas = listOf(
-        Question(
-            categoria = "Geografia",
-            enunciado = "Qual e a capital do Brasil?",
-            alternativas = listOf("Rio de Janeiro", "Brasilia", "Sao Paulo", "Salvador"),
-            correta = "Brasilia"
-        ),
-        Question(
-            categoria = "Matematica",
-            enunciado = "Quanto e 7 x 8?",
-            alternativas = listOf("54", "56", "58", "64"),
-            correta = "56"
-        ),
-        Question(
-            categoria = "Matematica",
-            enunciado = "Quanto é 10X10?",
-            alternativas = listOf("1000", "10", "35", "100"),
-            correta = "100"
-        ),
-        Question(
-            categoria = "Ciencia",
-            enunciado = "Qual planeta e conhecido como planeta vermelho?",
-            alternativas = listOf("Venus", "Marte", "Jupiter", "Saturno"),
-            correta = "Marte"
-        )
+
+        // ===== FÁCIL =====
+        Question("Geografia", "Qual a capital do Brasil?", listOf("Rio de Janeiro", "Brasília", "São Paulo", "Salvador"), "Brasília", "Fácil"),
+        Question("História", "Quem descobriu o Brasil?", listOf("Dom Pedro I", "Pedro Álvares Cabral", "Tiradentes", "Getúlio Vargas"), "Pedro Álvares Cabral", "Fácil"),
+        Question("Ciência", "Qual planeta é conhecido como planeta vermelho?", listOf("Vênus", "Marte", "Júpiter", "Saturno"), "Marte", "Fácil"),
+        Question("Matemática", "Quanto é 2 + 2?", listOf("3", "4", "5", "6"), "4", "Fácil"),
+        Question("Português", "Qual é o plural de 'cão'?", listOf("cãos", "cães", "cões", "caninos"), "cães", "Fácil"),
+        Question("Esportes", "Quantos jogadores um time de futebol tem em campo?", listOf("9", "10", "11", "12"), "11", "Fácil"),
+        Question("Tecnologia", "Qual empresa criou o iPhone?", listOf("Samsung", "Apple", "Microsoft", "Google"), "Apple", "Fácil"),
+        Question("Geografia", "Qual é o maior oceano do mundo?", listOf("Atlântico", "Índico", "Pacífico", "Ártico"), "Pacífico", "Fácil"),
+        Question("Entretenimento", "Qual personagem usa um chapéu vermelho e é encanador?", listOf("Luigi", "Mario", "Sonic", "Link"), "Mario", "Fácil"),
+        Question("Ciência", "A água ferve a quantos graus Celsius?", listOf("90", "100", "80", "120"), "100", "Fácil"),
+
+        // ===== MÉDIO =====
+        Question("História", "Em que ano ocorreu a Proclamação da República no Brasil?", listOf("1889", "1822", "1500", "1930"), "1889", "Médio"),
+        Question("Geografia", "Qual é o menor país do mundo?", listOf("Mônaco", "Vaticano", "Malta", "Luxemburgo"), "Vaticano", "Médio"),
+        Question("Ciência", "Qual é o elemento químico representado por 'O'?", listOf("Ouro", "Oxigênio", "Ósmio", "Oganessônio"), "Oxigênio", "Médio"),
+        Question("Matemática", "Quanto é 15 × 3?", listOf("30", "35", "45", "50"), "45", "Médio"),
+        Question("Português", "Qual figura de linguagem é usada em 'o vento sussurrava'?", listOf("Metáfora", "Personificação", "Hipérbole", "Ironia"), "Personificação", "Médio"),
+        Question("Esportes", "Em que país nasceu o futebol moderno?", listOf("Brasil", "Espanha", "Inglaterra", "Itália"), "Inglaterra", "Médio"),
+        Question("Tecnologia", "O que significa 'HTTP'?", listOf("HyperText Transfer Protocol", "High Tech Transfer Process", "Hyper Transfer Text Program", "Home Tool Transfer Protocol"), "HyperText Transfer Protocol", "Médio"),
+        Question("Geografia", "Qual é o rio mais extenso do mundo?", listOf("Nilo", "Amazonas", "Mississipi", "Yangtzé"), "Amazonas", "Médio"),
+        Question("História", "Quem foi o primeiro presidente do Brasil?", listOf("Getúlio Vargas", "Deodoro da Fonseca", "Juscelino Kubitschek", "Lula"), "Deodoro da Fonseca", "Médio"),
+        Question("Ciência", "Quantos ossos tem o corpo humano adulto?", listOf("206", "210", "180", "250"), "206", "Médio"),
+
+        // ===== DIFÍCIL =====
+        Question("História", "Qual tratado encerrou a Primeira Guerra Mundial?", listOf("Tratado de Paris", "Tratado de Versalhes", "Tratado de Tordesilhas", "Tratado de Utrecht"), "Tratado de Versalhes", "Difícil"),
+        Question("Geografia", "Qual é a capital da Mongólia?", listOf("Astana", "Ulan Bator", "Tashkent", "Bishkek"), "Ulan Bator", "Difícil"),
+        Question("Ciência", "Qual partícula subatômica possui carga negativa?", listOf("Próton", "Nêutron", "Elétron", "Quark"), "Elétron", "Difícil"),
+        Question("Matemática", "Qual é o valor de π (pi) aproximadamente?", listOf("2,14", "3,14", "4,13", "3,41"), "3,14", "Difícil"),
+        Question("Português", "Qual é o sujeito oculto na frase 'Fui ao mercado'?", listOf("Eu", "Ele", "Nós", "Eles"), "Eu", "Difícil"),
+        Question("Esportes", "Quantas Copas do Mundo o Brasil venceu até 2022?", listOf("4", "5", "6", "7"), "5", "Difícil"),
+        Question("Tecnologia", "Qual linguagem é usada principalmente para desenvolvimento Android nativo atualmente?", listOf("Java", "Kotlin", "Swift", "Python"), "Kotlin", "Difícil"),
+        Question("Geografia", "Qual deserto é o maior do mundo?", listOf("Saara", "Gobi", "Antártico", "Kalahari"), "Antártico", "Difícil"),
+        Question("História", "Quem foi o líder da União Soviética durante a Segunda Guerra Mundial?", listOf("Lenin", "Stalin", "Khrushchev", "Trotsky"), "Stalin", "Difícil"),
+        Question("Ciência", "Qual é a fórmula química do gás carbônico?", listOf("CO", "CO2", "O2", "CH4"), "CO2", "Difícil")
     )
 
     private var perguntas = emptyList<Question>()
@@ -71,6 +84,7 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_quiz)
+
 
         tvCategoria = findViewById(R.id.txtCategoriaQuiz)
         tvPergunta = findViewById(R.id.txtPerguntaQuiz)
@@ -108,7 +122,6 @@ class QuizActivity : AppCompatActivity() {
             categoriasSelecionadas = savedInstanceState.getStringArrayList("categoriasSelecionadas") ?: categoriasSelecionadas
             perguntas = filtrarPerguntas(categoriasSelecionadas)
         }
-
         mostrarPergunta()
     }
 
@@ -127,7 +140,7 @@ class QuizActivity : AppCompatActivity() {
         val pergunta = perguntas[indiceAtual]
 
         tvCategoria.text = "Categorias: ${categoriasSelecionadas.joinToString(", ")}"
-        tvPergunta.text = pergunta.enunciado
+        tvPergunta.text = "${pergunta.enunciado}\n\nNível: ${pergunta.nivel}"
         tvProgresso.text = "Pergunta ${indiceAtual + 1} de ${perguntas.size}"
         tvPontuacao.text = "Pontuacao: $pontuacao"
         if (!respondeuAtual) {
@@ -205,11 +218,12 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun filtrarPerguntas(categorias: List<String>): List<Question> {
-        return if (categorias.isEmpty()) {
+        val filtradas = if (categorias.isEmpty()) {
             bancoPerguntas
         } else {
             bancoPerguntas.filter { it.categoria in categorias }
         }
+        return filtradas.shuffled().take(10)
     }
 
     private fun atualizarProgresso(perguntaAtual: Int) {

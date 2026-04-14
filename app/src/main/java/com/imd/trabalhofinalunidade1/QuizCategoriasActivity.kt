@@ -10,9 +10,21 @@ import androidx.core.view.WindowCompat
 
 class QuizCategoriasActivity : AppCompatActivity() {
 
+    private lateinit var cbHistoria: CheckBox
     private lateinit var cbGeografia: CheckBox
-    private lateinit var cbMatematica: CheckBox
+
     private lateinit var cbCiencia: CheckBox
+    private lateinit var cbMatematica: CheckBox
+
+    private lateinit var cbPortugues: CheckBox
+
+    private lateinit var cbEsporte: CheckBox
+
+    private lateinit var cbTecnologia: CheckBox
+
+    private lateinit var cbEntretenimento: CheckBox
+
+
     private lateinit var tvStatusCategorias: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +32,14 @@ class QuizCategoriasActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_quiz_categorias)
 
+        cbHistoria = findViewById(R.id.cbCategoriaHistoria)
         cbGeografia = findViewById(R.id.cbCategoriaGeografia)
-        cbMatematica = findViewById(R.id.cbCategoriaMatematica)
         cbCiencia = findViewById(R.id.cbCategoriaCiencia)
-        tvStatusCategorias = findViewById(R.id.txtStatusCategorias)
+        cbMatematica = findViewById(R.id.cbCategoriaMatematica)
+        cbPortugues = findViewById(R.id.cbCategoriaPortugues)
+        cbEsporte = findViewById(R.id.cbCategoriaEsporte)
+        cbTecnologia = findViewById(R.id.cbCategoriaTecnologia)
+        cbEntretenimento = findViewById(R.id.cbCategoriaEntretenimento)
 
         findViewById<Button>(R.id.btnIniciarCategorias).setOnClickListener {
             abrirQuiz()
@@ -40,6 +56,11 @@ class QuizCategoriasActivity : AppCompatActivity() {
         if (cbGeografia.isChecked) categoriasSelecionadas.add("Geografia")
         if (cbMatematica.isChecked) categoriasSelecionadas.add("Matematica")
         if (cbCiencia.isChecked) categoriasSelecionadas.add("Ciencia")
+        if (cbHistoria.isChecked) categoriasSelecionadas.add("História")
+        if (cbPortugues.isChecked) categoriasSelecionadas.add("Português")
+        if (cbEsporte.isChecked) categoriasSelecionadas.add("Esportes")
+        if (cbTecnologia.isChecked) categoriasSelecionadas.add("Tecnologia")
+        if (cbEntretenimento.isChecked) categoriasSelecionadas.add("Entretenimento")
 
         if (categoriasSelecionadas.isEmpty()) {
             tvStatusCategorias.text = "Marque pelo menos uma categoria"
@@ -48,6 +69,7 @@ class QuizCategoriasActivity : AppCompatActivity() {
 
         val intent = Intent(this, QuizActivity::class.java)
         intent.putStringArrayListExtra("categorias", ArrayList(categoriasSelecionadas))
+
         startActivity(intent)
     }
 }
