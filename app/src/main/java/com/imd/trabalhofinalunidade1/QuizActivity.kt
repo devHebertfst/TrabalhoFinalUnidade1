@@ -4,11 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.WindowCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class QuizActivity : AppCompatActivity() {
 
@@ -188,6 +192,47 @@ class QuizActivity : AppCompatActivity() {
         mostrarPergunta()
     }
 
+    private fun tratarTempoEncerrado() {
+        if (respondeuAtual || perguntas.isEmpty()) return
+
+        val perguntaAtual = perguntas[indiceAtual]
+        respondeuAtual = true
+        tvStatus.text = "Tempo encerrado. Correta: ${perguntaAtual.correta}"
+        atualizarProgresso(indiceAtual + 1)
+        mostrarPergunta()
+
+        val textoBotao = if (indiceAtual < perguntas.lastIndex) {
+            "Próxima pergunta"
+        } else {
+            "Ver resultado"
+        }
+
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_quiz_timeout, null)
+        dialogView.findViewById<TextView>(R.id.txtDialogRespostaCorreta).text = perguntaAtual.correta
+        dialogView.findViewById<TextView>(R.id.txtDialogPergunta).text =
+            "Pergunta: ${perguntaAtual.enunciado}"
+        dialogView.findViewById<Button>(R.id.btnDialogProximaPergunta).text = textoBotao
+
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        dialog.setOnShowListener {
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        dialogView.findViewById<Button>(R.id.btnDialogProximaPergunta).setOnClickListener {
+            dialog.dismiss()
+            avancarPergunta()
+        }
+
+        dialog.show()
+    }
+
     private fun avancarPergunta() {
 
         if (!respondeuAtual) {
@@ -258,7 +303,8 @@ class QuizActivity : AppCompatActivity() {
     private fun atualizarTime() {
         time = object : CountDownTimer(30000L, 1000L) {
             override fun onFinish() {
-                avancarPergunta()
+                textTime.text = "0 segundos"
+                tratarTempoEncerrado()
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -267,5 +313,12 @@ class QuizActivity : AppCompatActivity() {
             }
         }
         time.start()
+    }
+
+    override fun onDestroy() {
+        if (::time.isInitialized) {
+            time.cancel()
+        }
+        super.onDestroy()
     }
 }
