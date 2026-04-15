@@ -46,4 +46,5 @@
     <dimen name="quiz_checkbox_padding">6dp</dimen>
     <dimen name="quiz_checkbox_margin_top">12dp</dimen>
     <dimen name="quiz_checkbox_margin_top_sm">12dp</dimen>
+    <dimen name="quiz_min_height">580dp</dimen>
 </resources>

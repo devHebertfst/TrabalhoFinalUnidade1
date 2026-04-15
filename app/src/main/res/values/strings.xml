@@ -63,4 +63,7 @@
     <string name="quiz_reiniciado">Quiz reiniciado</string>
     <string name="basquete_vencendo_a">Time A está vencendo por %d pts</string>
     <string name="basquete_vencendo_b">Time B está vencendo por %d pts</string>
+    <string name="quiz_resultado_label">Quiz finalizado</string>
+    <string name="quiz_resultado_titulo">Resultado</string>
+    <string name="quiz_btn_jogar_novamente">Jogar novamente</string>
 </resources>

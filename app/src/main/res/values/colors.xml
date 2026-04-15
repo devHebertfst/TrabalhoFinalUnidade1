@@ -51,6 +51,10 @@
     <color name="quiz_btn_text">#FFFFFFFF</color>
     <color name="quiz_checkbox_bg">#FFFFFBF2</color>
     <color name="quiz_checkbox_text">#FF3B2200</color>
+    <color name="quiz_card_stroke">#FFD08A</color>
+    <color name="quiz_mensagem_bg">#FFF3DC</color>
+    <color name="quiz_progress_track">#FFE8BB</color>
+    <color name="quiz_text_header_muted">#FF7A3E00</color>
 
     <!-- Dark theme base -->
     <color name="dark_bg">#FF121212</color>
@@ -58,4 +62,5 @@
     <color name="dark_surface_2">#FF2C2C2C</color>
     <color name="dark_text_primary">#FFF5F5F5</color>
     <color name="dark_text_secondary">#FFB0B0B0</color>
+
 </resources>
