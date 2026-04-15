@@ -37,4 +37,5 @@
     <color name="quiz_card_bg">@color/dark_surface_2</color>
     <color name="quiz_checkbox_bg">@color/dark_surface_2</color>
     <color name="quiz_checkbox_text">@color/dark_text_primary</color>
+    <color name="quiz_mensagem_bg">@color/dark_surface_2</color>
 </resources>
