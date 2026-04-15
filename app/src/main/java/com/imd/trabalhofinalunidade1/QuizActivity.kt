@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.WindowCompat
@@ -35,17 +36,12 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var btnOpcao3: Button
     private lateinit var btnOpcao4: Button
     private lateinit var btnProxima: Button
-    private lateinit var btnReiniciar: Button
 
     private lateinit var txtProgressBar: ProgressBar
-
-    private lateinit var time : CountDownTimer
-
-    private lateinit var textTime : TextView
+    private lateinit var time: CountDownTimer
+    private lateinit var textTime: TextView
 
     private val bancoPerguntas = listOf(
-
-        // ===== FÁCIL =====
         Question("Geografia", "Qual a capital do Brasil?", listOf("Rio de Janeiro", "Brasília", "São Paulo", "Salvador"), "Brasília", "Fácil"),
         Question("História", "Quem descobriu o Brasil?", listOf("Dom Pedro I", "Pedro Álvares Cabral", "Tiradentes", "Getúlio Vargas"), "Pedro Álvares Cabral", "Fácil"),
         Question("Ciência", "Qual planeta é conhecido como planeta vermelho?", listOf("Vênus", "Marte", "Júpiter", "Saturno"), "Marte", "Fácil"),
@@ -57,7 +53,6 @@ class QuizActivity : AppCompatActivity() {
         Question("Entretenimento", "Qual personagem usa um chapéu vermelho e é encanador?", listOf("Luigi", "Mario", "Sonic", "Link"), "Mario", "Fácil"),
         Question("Ciência", "A água ferve a quantos graus Celsius?", listOf("90", "100", "80", "120"), "100", "Fácil"),
 
-        // ===== MÉDIO =====
         Question("História", "Em que ano ocorreu a Proclamação da República no Brasil?", listOf("1889", "1822", "1500", "1930"), "1889", "Médio"),
         Question("Geografia", "Qual é o menor país do mundo?", listOf("Mônaco", "Vaticano", "Malta", "Luxemburgo"), "Vaticano", "Médio"),
         Question("Ciência", "Qual é o elemento químico representado por 'O'?", listOf("Ouro", "Oxigênio", "Ósmio", "Oganessônio"), "Oxigênio", "Médio"),
@@ -69,7 +64,6 @@ class QuizActivity : AppCompatActivity() {
         Question("História", "Quem foi o primeiro presidente do Brasil?", listOf("Getúlio Vargas", "Deodoro da Fonseca", "Juscelino Kubitschek", "Lula"), "Deodoro da Fonseca", "Médio"),
         Question("Ciência", "Quantos ossos tem o corpo humano adulto?", listOf("206", "210", "180", "250"), "206", "Médio"),
 
-        // ===== DIFÍCIL =====
         Question("História", "Qual tratado encerrou a Primeira Guerra Mundial?", listOf("Tratado de Paris", "Tratado de Versalhes", "Tratado de Tordesilhas", "Tratado de Utrecht"), "Tratado de Versalhes", "Difícil"),
         Question("Geografia", "Qual é a capital da Mongólia?", listOf("Astana", "Ulan Bator", "Tashkent", "Bishkek"), "Ulan Bator", "Difícil"),
         Question("Ciência", "Qual partícula subatômica possui carga negativa?", listOf("Próton", "Nêutron", "Elétron", "Quark"), "Elétron", "Difícil"),
@@ -88,16 +82,15 @@ class QuizActivity : AppCompatActivity() {
     private var indiceAtual = 0
     private var pontuacao = 0
     private var respondeuAtual = false
-    private var qtdPerguntas = 0
-
-    private var timeInicio: Long = 0
+    private var dialogAberto = false
+    private var timeoutPendente = false
+    private var dialogConfirmacaoSaida: AlertDialog? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_quiz)
-
 
         tvCategoria = findViewById(R.id.txtCategoriaQuiz)
         tvPergunta = findViewById(R.id.txtPerguntaQuiz)
@@ -112,15 +105,10 @@ class QuizActivity : AppCompatActivity() {
         btnOpcao3 = findViewById(R.id.btnOpcao3)
         btnOpcao4 = findViewById(R.id.btnOpcao4)
         btnProxima = findViewById(R.id.btnProximaPergunta)
-        btnReiniciar = findViewById(R.id.btnReiniciarQuiz)
 
         categoriasSelecionadas = intent.getStringArrayListExtra("categorias") ?: emptyList()
         perguntas = filtrarPerguntas(categoriasSelecionadas)
-
-        qtdPerguntas = perguntas.size
-        txtProgressBar.max=qtdPerguntas
-
-        iniciarTime()
+        txtProgressBar.max = perguntas.size
 
         val botoesOpcoes = listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4)
         botoesOpcoes.forEach { botao ->
@@ -128,8 +116,12 @@ class QuizActivity : AppCompatActivity() {
         }
 
         btnProxima.setOnClickListener { avancarPergunta() }
-        btnReiniciar.setOnClickListener { reiniciarQuiz() }
-        findViewById<Button>(R.id.btnVoltarCentralQuiz).setOnClickListener { voltarParaCentral() }
+        findViewById<Button>(R.id.btnVoltarCentralQuiz).setOnClickListener { confirmarVoltarParaMenu() }
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                confirmarVoltarParaMenu()
+            }
+        })
 
         if (savedInstanceState != null) {
             indiceAtual = savedInstanceState.getInt("indiceAtual", 0)
@@ -137,16 +129,19 @@ class QuizActivity : AppCompatActivity() {
             respondeuAtual = savedInstanceState.getBoolean("respondeuAtual", false)
             categoriasSelecionadas = savedInstanceState.getStringArrayList("categoriasSelecionadas") ?: categoriasSelecionadas
             perguntas = filtrarPerguntas(categoriasSelecionadas)
+            txtProgressBar.max = perguntas.size
         }
+
+        iniciarTime()
         mostrarPergunta()
     }
 
     private fun mostrarPergunta() {
         if (perguntas.isEmpty()) {
             tvCategoria.text = "Categorias: nenhuma"
-            tvPergunta.text = "Nenhuma pergunta disponivel"
+            tvPergunta.text = "Nenhuma pergunta disponível"
             tvProgresso.text = "Pergunta 0 de 0"
-            tvPontuacao.text = "Pontuacao: 0"
+            tvPontuacao.text = "Pontuação: 0"
             tvStatus.text = "Adicione perguntas para esta categoria"
             listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4).forEach { it.isEnabled = false }
             btnProxima.isEnabled = false
@@ -154,11 +149,11 @@ class QuizActivity : AppCompatActivity() {
         }
 
         val pergunta = perguntas[indiceAtual]
-
         tvCategoria.text = "Categorias: ${categoriasSelecionadas.joinToString(", ")}"
         tvPergunta.text = "${pergunta.enunciado}\n\nNível: ${pergunta.nivel}"
         tvProgresso.text = "Pergunta ${indiceAtual + 1} de ${perguntas.size}"
-        tvPontuacao.text = "Pontuacao: $pontuacao"
+        tvPontuacao.text = "Pontuação: $pontuacao"
+
         if (!respondeuAtual) {
             tvStatus.text = "Selecione uma alternativa"
         }
@@ -176,7 +171,6 @@ class QuizActivity : AppCompatActivity() {
         if (respondeuAtual) return
 
         time.cancel()
-
         val perguntaAtual = perguntas[indiceAtual]
         respondeuAtual = true
 
@@ -187,16 +181,22 @@ class QuizActivity : AppCompatActivity() {
             tvStatus.text = "Resposta errada. Correta: ${perguntaAtual.correta}"
         }
 
-        atualizarProgresso(indiceAtual+1)
-
+        atualizarProgresso(indiceAtual + 1)
         mostrarPergunta()
     }
 
     private fun tratarTempoEncerrado() {
         if (respondeuAtual || perguntas.isEmpty()) return
 
+        if (dialogAberto) {
+            timeoutPendente = true
+            textTime.text = "0 segundos"
+            return
+        }
+
         val perguntaAtual = perguntas[indiceAtual]
         respondeuAtual = true
+        timeoutPendente = false
         tvStatus.text = "Tempo encerrado. Correta: ${perguntaAtual.correta}"
         atualizarProgresso(indiceAtual + 1)
         mostrarPergunta()
@@ -209,8 +209,7 @@ class QuizActivity : AppCompatActivity() {
 
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_quiz_timeout, null)
         dialogView.findViewById<TextView>(R.id.txtDialogRespostaCorreta).text = perguntaAtual.correta
-        dialogView.findViewById<TextView>(R.id.txtDialogPergunta).text =
-            "Pergunta: ${perguntaAtual.enunciado}"
+        dialogView.findViewById<TextView>(R.id.txtDialogPergunta).text = "Pergunta: ${perguntaAtual.enunciado}"
         dialogView.findViewById<Button>(R.id.btnDialogProximaPergunta).text = textoBotao
 
         val dialog = MaterialAlertDialogBuilder(this)
@@ -218,11 +217,17 @@ class QuizActivity : AppCompatActivity() {
             .setCancelable(false)
             .create()
 
+        dialogAberto = true
+
         dialog.setOnShowListener {
             dialog.window?.setLayout(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
+        }
+
+        dialog.setOnDismissListener {
+            dialogAberto = false
         }
 
         dialogView.findViewById<Button>(R.id.btnDialogProximaPergunta).setOnClickListener {
@@ -234,7 +239,6 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun avancarPergunta() {
-
         if (!respondeuAtual) {
             tvStatus.text = "Selecione uma alternativa antes de continuar"
             return
@@ -248,29 +252,62 @@ class QuizActivity : AppCompatActivity() {
             atualizarTime()
         } else {
             time.cancel()
-            tvStatus.text = "Quiz finalizado. Pontuacao: $pontuacao de ${perguntas.size}"
+            tvStatus.text = "Quiz finalizado. Pontuação: $pontuacao de ${perguntas.size}"
             btnProxima.isEnabled = false
             listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4).forEach { it.isEnabled = false }
         }
     }
 
-    private fun reiniciarQuiz() {
-        indiceAtual = 0
-        pontuacao = 0
-        respondeuAtual = false
-        perguntas = filtrarPerguntas(categoriasSelecionadas)
-        mostrarPergunta()
-        tvStatus.text = "Quiz reiniciado"
-        txtProgressBar.progress = 0
-        iniciarTime()
-    }
-
-    private fun voltarParaCentral() {
-        val intent = Intent(this, MainActivity::class.java).apply {
+    private fun voltarParaMenu() {
+        if (::time.isInitialized) {
+            time.cancel()
+        }
+        val intent = Intent(this, QuizMenuActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
         startActivity(intent)
         finish()
+    }
+
+    private fun confirmarVoltarParaMenu() {
+        if (dialogConfirmacaoSaida?.isShowing == true) return
+
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_quiz_exit, null)
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialog.setOnShowListener {
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        dialog.setOnDismissListener {
+            dialogAberto = false
+            dialogConfirmacaoSaida = null
+        }
+
+        dialogView.findViewById<Button>(R.id.btnDialogContinuarQuiz).setOnClickListener {
+            dialog.dismiss()
+            window.decorView.post {
+                if (timeoutPendente) {
+                    tratarTempoEncerrado()
+                }
+            }
+        }
+
+        dialogView.findViewById<Button>(R.id.btnDialogVoltarMenu).setOnClickListener {
+            dialog.dismiss()
+            voltarParaMenu()
+        }
+
+        dialogConfirmacaoSaida = dialog
+        dialog.show()
+
+        dialogAberto = true
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -295,8 +332,6 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun iniciarTime() {
-         timeInicio = System.currentTimeMillis()
-
         atualizarTime()
     }
 
@@ -309,7 +344,7 @@ class QuizActivity : AppCompatActivity() {
 
             override fun onTick(millisUntilFinished: Long) {
                 val segundos = millisUntilFinished / 1000
-            textTime.text = " $segundos segundos"
+                textTime.text = " $segundos segundos"
             }
         }
         time.start()

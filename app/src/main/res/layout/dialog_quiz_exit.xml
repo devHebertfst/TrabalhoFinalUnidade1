@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/quiz_btn_back"
+            android:gravity="center"
+            android:text="←"
+            android:textColor="@color/quiz_btn_text"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voltar para o menu?"
+                android:textColor="@color/quiz_text_question"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Seu progresso atual será perdido se você sair agora."
+                android:textColor="@color/quiz_text_body"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDialogContinuarQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/quiz_btn_back"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:text="Continuar no quiz"
+        android:textColor="@color/quiz_btn_text"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnDialogVoltarMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/quiz_btn_primary"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:text="Voltar para o menu"
+        android:textColor="@color/quiz_btn_text"
+        android:textStyle="bold" />
+
+</LinearLayout>

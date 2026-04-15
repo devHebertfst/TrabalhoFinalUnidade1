@@ -59,6 +59,7 @@
     <string name="quiz_status_min_categoria">Marque pelo menos uma categoria</string>
     <string name="quiz_btn_comecar">Começar quiz</string>
     <string name="quiz_btn_voltar_menu">Voltar</string>
+    <string name="quiz_btn_voltar_para_menu">Voltar para o menu</string>
     <string name="quiz_categoria_geografia">Geografia</string>
     <string name="quiz_categoria_matematica">Matemática</string>
     <string name="quiz_categoria_ciencia">Ciência</string>

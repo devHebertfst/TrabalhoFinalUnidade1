@@ -131,15 +131,6 @@
             android:textColor="@color/quiz_btn_text" />
 
         <Button
-            android:id="@+id/btnReiniciarQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
-            android:backgroundTint="@color/quiz_btn_tertiary"
-            android:text="@string/quiz_btn_reiniciar"
-            android:textColor="@color/quiz_btn_text" />
-
-        <Button
             android:id="@+id/btnVoltarCentralQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -147,7 +138,7 @@
             android:backgroundTint="@color/quiz_btn_back"
             android:drawableLeft="@drawable/outline_arrow_back_ios_24"
             android:drawableTint="@color/quiz_btn_text"
-            android:text="@string/btn_voltar_central"
+            android:text="@string/quiz_btn_voltar_para_menu"
             android:textColor="@color/quiz_btn_text" />
 
     </LinearLayout>
