@@ -12,19 +12,12 @@ class QuizCategoriasActivity : AppCompatActivity() {
 
     private lateinit var cbHistoria: CheckBox
     private lateinit var cbGeografia: CheckBox
-
     private lateinit var cbCiencia: CheckBox
     private lateinit var cbMatematica: CheckBox
-
     private lateinit var cbPortugues: CheckBox
-
     private lateinit var cbEsporte: CheckBox
-
     private lateinit var cbTecnologia: CheckBox
-
     private lateinit var cbEntretenimento: CheckBox
-
-
     private lateinit var tvStatusCategorias: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +33,7 @@ class QuizCategoriasActivity : AppCompatActivity() {
         cbEsporte = findViewById(R.id.cbCategoriaEsporte)
         cbTecnologia = findViewById(R.id.cbCategoriaTecnologia)
         cbEntretenimento = findViewById(R.id.cbCategoriaEntretenimento)
+        tvStatusCategorias = findViewById(R.id.txtStatusCategorias)
 
         findViewById<Button>(R.id.btnIniciarCategorias).setOnClickListener {
             abrirQuiz()
@@ -54,8 +48,8 @@ class QuizCategoriasActivity : AppCompatActivity() {
         val categoriasSelecionadas = mutableListOf<String>()
 
         if (cbGeografia.isChecked) categoriasSelecionadas.add("Geografia")
-        if (cbMatematica.isChecked) categoriasSelecionadas.add("Matematica")
-        if (cbCiencia.isChecked) categoriasSelecionadas.add("Ciencia")
+        if (cbMatematica.isChecked) categoriasSelecionadas.add("Matemática")
+        if (cbCiencia.isChecked) categoriasSelecionadas.add("Ciência")
         if (cbHistoria.isChecked) categoriasSelecionadas.add("História")
         if (cbPortugues.isChecked) categoriasSelecionadas.add("Português")
         if (cbEsporte.isChecked) categoriasSelecionadas.add("Esportes")
@@ -69,7 +63,6 @@ class QuizCategoriasActivity : AppCompatActivity() {
 
         val intent = Intent(this, QuizActivity::class.java)
         intent.putStringArrayListExtra("categorias", ArrayList(categoriasSelecionadas))
-
         startActivity(intent)
     }
 }
