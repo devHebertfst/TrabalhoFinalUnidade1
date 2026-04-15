@@ -62,6 +62,8 @@
     <color name="quiz_btn_tertiary">#FFA66C2C</color>
     <color name="quiz_btn_back">#FF5E4323</color>
     <color name="quiz_btn_text">#FFFFFFFF</color>
+    <color name="quiz_btn_correct">#FF2E7D32</color>
+    <color name="quiz_btn_wrong">#FFC62828</color>
     <color name="quiz_checkbox_bg">#FFFFFBF2</color>
     <color name="quiz_checkbox_text">#FF3B2200</color>
 

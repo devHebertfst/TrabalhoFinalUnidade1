@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -60,6 +61,7 @@ class QuizActivity : AppCompatActivity() {
     private var indiceAtual = 0
     private var pontuacao = 0
     private var respondeuAtual = false
+    private var respostaSelecionadaAtual: String? = null
     private var dialogAberto = false
     private var timeoutPendente = false
     private var quizInicioMs = 0L
@@ -114,6 +116,7 @@ class QuizActivity : AppCompatActivity() {
             indiceAtual = savedInstanceState.getInt("indiceAtual", 0)
             pontuacao = savedInstanceState.getInt("pontuacao", 0)
             respondeuAtual = savedInstanceState.getBoolean("respondeuAtual", false)
+            respostaSelecionadaAtual = savedInstanceState.getString("respostaSelecionadaAtual")
             quizInicioMs = savedInstanceState.getLong("quizInicioMs", 0L)
             categoriasSelecionadas =
                 savedInstanceState.getStringArrayList("categoriasSelecionadas") ?: categoriasSelecionadas
@@ -151,6 +154,11 @@ class QuizActivity : AppCompatActivity() {
         botoes.forEachIndexed { index, button ->
             button.text = pergunta.alternativas[index]
             button.isEnabled = !respondeuAtual
+            aplicarEstiloPadraoBotao(button)
+        }
+
+        if (respondeuAtual) {
+            atualizarFeedbackRespostas(respostaSelecionadaAtual, pergunta.correta)
         }
 
         btnProxima.isEnabled = respondeuAtual
@@ -162,6 +170,7 @@ class QuizActivity : AppCompatActivity() {
         time.cancel()
         val perguntaAtual = perguntas[indiceAtual]
         respondeuAtual = true
+        respostaSelecionadaAtual = respostaEscolhida
 
         if (respostaEscolhida == perguntaAtual.correta) {
             pontuacao++
@@ -170,6 +179,7 @@ class QuizActivity : AppCompatActivity() {
             tvStatus.text = "Resposta errada. Correta: ${perguntaAtual.correta}"
         }
 
+        atualizarFeedbackRespostas(respostaEscolhida, perguntaAtual.correta)
         atualizarProgresso(indiceAtual + 1)
         mostrarPergunta()
     }
@@ -185,8 +195,10 @@ class QuizActivity : AppCompatActivity() {
 
         val perguntaAtual = perguntas[indiceAtual]
         respondeuAtual = true
+        respostaSelecionadaAtual = null
         timeoutPendente = false
         tvStatus.text = "Tempo encerrado. Correta: ${perguntaAtual.correta}"
+        atualizarFeedbackRespostas(null, perguntaAtual.correta)
         atualizarProgresso(indiceAtual + 1)
         mostrarPergunta()
 
@@ -236,6 +248,7 @@ class QuizActivity : AppCompatActivity() {
         if (indiceAtual < perguntas.lastIndex) {
             indiceAtual++
             respondeuAtual = false
+            respostaSelecionadaAtual = null
             mostrarPergunta()
             time.cancel()
             atualizarTime()
@@ -300,6 +313,7 @@ class QuizActivity : AppCompatActivity() {
         outState.putInt("indiceAtual", indiceAtual)
         outState.putInt("pontuacao", pontuacao)
         outState.putBoolean("respondeuAtual", respondeuAtual)
+        outState.putString("respostaSelecionadaAtual", respostaSelecionadaAtual)
         outState.putLong("quizInicioMs", quizInicioMs)
         outState.putStringArrayList("categoriasSelecionadas", ArrayList(categoriasSelecionadas))
     }
@@ -352,6 +366,27 @@ class QuizActivity : AppCompatActivity() {
             }
         }
         time.start()
+    }
+
+    private fun atualizarFeedbackRespostas(respostaEscolhida: String?, respostaCorreta: String) {
+        val botoes = listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4)
+        botoes.forEach { button ->
+            when {
+                button.text.toString() == respostaCorreta -> aplicarEstiloBotao(button, R.color.quiz_btn_correct)
+                respostaEscolhida != null && button.text.toString() == respostaEscolhida ->
+                    aplicarEstiloBotao(button, R.color.quiz_btn_wrong)
+                else -> aplicarEstiloPadraoBotao(button)
+            }
+        }
+    }
+
+    private fun aplicarEstiloPadraoBotao(button: Button) {
+        aplicarEstiloBotao(button, R.color.quiz_btn_primary)
+    }
+
+    private fun aplicarEstiloBotao(button: Button, colorRes: Int) {
+        button.backgroundTintList = ContextCompat.getColorStateList(this, colorRes)
+        button.setTextColor(ContextCompat.getColor(this, R.color.quiz_btn_text))
     }
 
     override fun onDestroy() {
