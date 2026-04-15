@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/quiz_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="@dimen/quiz_min_height"
+            android:orientation="vertical"
+            android:padding="@dimen/quiz_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_resultado"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/quiz_header_bg"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quiz_resultado_label"
+                        android:textColor="@color/quiz_text_header_muted"
+                        android:textSize="12sp"
+                        android:letterSpacing="0.08"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quiz_resultado_titulo"
+                        android:textColor="@color/quiz_text_header"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/quiz_card_bg"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="28dp">
+
+                    <FrameLayout
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_marginBottom="24dp">
+
+                        <View
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:background="@drawable/bg_circle_ring"
+                            android:layout_gravity="center" />
+
+                        <FrameLayout
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/bg_circle_score"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvPontuacaoResultado"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textColor="@color/white"
+                                    android:textSize="40sp"
+                                    android:textStyle="bold"
+                                    android:lineSpacingExtra="0dp" />
+
+                                <TextView
+                                    android:id="@+id/tvTotalResultado"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="de 10"
+                                    android:textColor="#CCFFFFFF"
+                                    android:textSize="13sp" />
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvMensagemResultado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_mensagem_resultado"
+                        android:gravity="center"
+                        android:padding="14dp"
+                        android:textColor="@color/quiz_text_header"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        android:layout_marginBottom="20dp" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarResultado"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginBottom="6dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/progress_resultado"
+                        android:progressBackgroundTint="@color/quiz_progress_track" />
+
+                    <TextView
+                        android:id="@+id/tvAproveitamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0% de aproveitamento"
+                        android:textColor="@color/quiz_text_status"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="28dp" />
+
+                    <Button
+                        android:id="@+id/btnJogarNovamente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/quiz_btn_primary"
+                        android:text="@string/quiz_btn_jogar_novamente"
+                        android:textColor="@color/quiz_btn_text"
+                        android:textSize="15sp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp" />
+
+                    <Button
+                        android:id="@+id/btnVoltarCentralQuizMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/quiz_btn_secondary"
+                        android:text="@string/btn_voltar_central"
+                        android:textColor="@color/quiz_btn_text"
+                        android:textSize="14sp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
