@@ -54,8 +54,8 @@ class QuizCategoriasActivity : AppCompatActivity() {
         val categoriasSelecionadas = mutableListOf<String>()
 
         if (cbGeografia.isChecked) categoriasSelecionadas.add("Geografia")
-        if (cbMatematica.isChecked) categoriasSelecionadas.add("Matematica")
-        if (cbCiencia.isChecked) categoriasSelecionadas.add("Ciencia")
+        if (cbMatematica.isChecked) categoriasSelecionadas.add("Matemática")
+        if (cbCiencia.isChecked) categoriasSelecionadas.add("Ciência")
         if (cbHistoria.isChecked) categoriasSelecionadas.add("História")
         if (cbPortugues.isChecked) categoriasSelecionadas.add("Português")
         if (cbEsporte.isChecked) categoriasSelecionadas.add("Esportes")

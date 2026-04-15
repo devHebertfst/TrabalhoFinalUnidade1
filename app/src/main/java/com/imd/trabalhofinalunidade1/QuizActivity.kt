@@ -185,9 +185,12 @@ class QuizActivity : AppCompatActivity() {
             respondeuAtual = false
             mostrarPergunta()
         } else {
-            tvStatus.text = "Quiz finalizado. Pontuacao: $pontuacao de ${perguntas.size}"
-            btnProxima.isEnabled = false
-            listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4).forEach { it.isEnabled = false }
+            val intent = Intent(this, QuizResultadoActivity::class.java).apply {
+                putExtra("pontuacao", pontuacao)
+                putExtra("total", perguntas.size)
+            }
+            startActivity(intent)
+            finish()
         }
     }
 
