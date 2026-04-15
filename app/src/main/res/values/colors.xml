@@ -57,6 +57,8 @@
     <color name="quiz_text_question">#FF2F1B05</color>
     <color name="quiz_text_status">#FF8A3B12</color>
     <color name="quiz_card_bg">#FFFFFBF2</color>
+    <color name="quiz_dialog_bg">#FFFFFBF2</color>
+    <color name="quiz_dialog_icon_bg">#FFF6E2C3</color>
     <color name="quiz_btn_primary">#FFE07A1F</color>
     <color name="quiz_btn_secondary">#FF8C6239</color>
     <color name="quiz_btn_tertiary">#FFA66C2C</color>

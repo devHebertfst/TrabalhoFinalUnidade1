@@ -35,6 +35,8 @@
     <color name="quiz_text_question">@color/dark_text_primary</color>
     <color name="quiz_text_status">#FFFFAA66</color>
     <color name="quiz_card_bg">@color/dark_surface_2</color>
+    <color name="quiz_dialog_bg">@color/dark_surface_2</color>
+    <color name="quiz_dialog_icon_bg">#FF43311D</color>
     <color name="quiz_checkbox_bg">@color/dark_surface_2</color>
     <color name="quiz_checkbox_text">@color/dark_text_primary</color>
 </resources>
