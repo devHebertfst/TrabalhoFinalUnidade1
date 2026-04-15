@@ -4,6 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
@@ -40,6 +43,7 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var txtProgressBar: ProgressBar
     private lateinit var time: CountDownTimer
     private lateinit var textTime: TextView
+    private lateinit var textTempoTotal: TextView
 
     private val bancoPerguntas = geografiaQuestions() +
         historiaQuestions() +
@@ -58,7 +62,15 @@ class QuizActivity : AppCompatActivity() {
     private var respondeuAtual = false
     private var dialogAberto = false
     private var timeoutPendente = false
+    private var quizInicioMs = 0L
     private var dialogConfirmacaoSaida: AlertDialog? = null
+    private val tempoTotalHandler = Handler(Looper.getMainLooper())
+    private val tempoTotalRunnable = object : Runnable {
+        override fun run() {
+            atualizarTempoTotal()
+            tempoTotalHandler.postDelayed(this, 1000L)
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +85,7 @@ class QuizActivity : AppCompatActivity() {
         tvStatus = findViewById(R.id.txtStatusQuiz)
         txtProgressBar = findViewById(R.id.txtProgressBar)
         textTime = findViewById(R.id.textTime)
+        textTempoTotal = findViewById(R.id.textTempoTotalQuiz)
 
         btnOpcao1 = findViewById(R.id.btnOpcao1)
         btnOpcao2 = findViewById(R.id.btnOpcao2)
@@ -101,6 +114,7 @@ class QuizActivity : AppCompatActivity() {
             indiceAtual = savedInstanceState.getInt("indiceAtual", 0)
             pontuacao = savedInstanceState.getInt("pontuacao", 0)
             respondeuAtual = savedInstanceState.getBoolean("respondeuAtual", false)
+            quizInicioMs = savedInstanceState.getLong("quizInicioMs", 0L)
             categoriasSelecionadas =
                 savedInstanceState.getStringArrayList("categoriasSelecionadas") ?: categoriasSelecionadas
             perguntas = filtrarPerguntas(categoriasSelecionadas)
@@ -226,10 +240,7 @@ class QuizActivity : AppCompatActivity() {
             time.cancel()
             atualizarTime()
         } else {
-            time.cancel()
-            tvStatus.text = "Quiz finalizado. Pontuação: $pontuacao de ${perguntas.size}"
-            btnProxima.isEnabled = false
-            listOf(btnOpcao1, btnOpcao2, btnOpcao3, btnOpcao4).forEach { it.isEnabled = false }
+            finalizarQuiz()
         }
     }
 
@@ -289,6 +300,7 @@ class QuizActivity : AppCompatActivity() {
         outState.putInt("indiceAtual", indiceAtual)
         outState.putInt("pontuacao", pontuacao)
         outState.putBoolean("respondeuAtual", respondeuAtual)
+        outState.putLong("quizInicioMs", quizInicioMs)
         outState.putStringArrayList("categoriasSelecionadas", ArrayList(categoriasSelecionadas))
     }
 
@@ -306,7 +318,25 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun iniciarTime() {
+        if (quizInicioMs == 0L) {
+            quizInicioMs = SystemClock.elapsedRealtime()
+        }
+        iniciarTempoTotal()
         atualizarTime()
+    }
+
+    private fun iniciarTempoTotal() {
+        atualizarTempoTotal()
+        tempoTotalHandler.removeCallbacks(tempoTotalRunnable)
+        tempoTotalHandler.postDelayed(tempoTotalRunnable, 1000L)
+    }
+
+    private fun atualizarTempoTotal() {
+        val tempoDecorrido = SystemClock.elapsedRealtime() - quizInicioMs
+        val totalSegundos = (tempoDecorrido / 1000).toInt()
+        val minutos = totalSegundos / 60
+        val segundos = totalSegundos % 60
+        textTempoTotal.text = String.format("  Total %02d:%02d", minutos, segundos)
     }
 
     private fun atualizarTime() {
@@ -328,7 +358,27 @@ class QuizActivity : AppCompatActivity() {
         if (::time.isInitialized) {
             time.cancel()
         }
+        tempoTotalHandler.removeCallbacks(tempoTotalRunnable)
         super.onDestroy()
+    }
+
+    private fun finalizarQuiz() {
+        if (::time.isInitialized) {
+            time.cancel()
+        }
+
+        val tempoTotalMs = SystemClock.elapsedRealtime() - quizInicioMs
+        val intent = Intent(this, QuizResultadoActivity::class.java).apply {
+            putExtra(QuizResultadoActivity.EXTRA_PONTUACAO, pontuacao)
+            putExtra(QuizResultadoActivity.EXTRA_TOTAL_PERGUNTAS, perguntas.size)
+            putExtra(QuizResultadoActivity.EXTRA_TEMPO_TOTAL_MS, tempoTotalMs)
+            putStringArrayListExtra(
+                QuizResultadoActivity.EXTRA_CATEGORIAS,
+                ArrayList(categoriasSelecionadas)
+            )
+        }
+        startActivity(intent)
+        finish()
     }
 
     private fun geografiaQuestions() = listOf(

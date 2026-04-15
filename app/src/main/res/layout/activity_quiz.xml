@@ -49,15 +49,34 @@
             android:text="Pontuacao: 0"
             android:textColor="@color/quiz_text_body" />
 
-        <TextView
-            android:id="@+id/textTime"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/outline_alarm_24"
-            android:drawableTint="@color/quiz_btn_primary"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:gravity="center"
-            android:paddingTop="1dp"
-            android:text="  Time" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/outline_alarm_24"
+                android:drawableTint="@color/quiz_btn_primary"
+                android:gravity="center"
+                android:paddingTop="1dp"
+                android:text="  30 segundos" />
+
+            <TextView
+                android:id="@+id/textTempoTotalQuiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_lg"
+                android:drawableLeft="@drawable/outline_alarm_24"
+                android:drawableTint="@color/quiz_btn_secondary"
+                android:gravity="center"
+                android:paddingTop="1dp"
+                android:text="  Total 00:00" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txtPerguntaQuiz"

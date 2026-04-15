@@ -48,6 +48,11 @@
             android:theme="@style/Theme.Quiz"
             android:exported="false" />
 
+        <activity
+            android:name=".QuizResultadoActivity"
+            android:theme="@style/Theme.Quiz"
+            android:exported="false" />
+
     </application>
 
 </manifest>
