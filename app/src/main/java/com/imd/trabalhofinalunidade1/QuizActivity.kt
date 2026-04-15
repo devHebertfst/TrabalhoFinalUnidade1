@@ -263,7 +263,7 @@ class QuizActivity : AppCompatActivity() {
 
             override fun onTick(millisUntilFinished: Long) {
                 val segundos = millisUntilFinished / 1000
-                textTime.text = segundos.toString()
+            textTime.text = " $segundos segundos"
             }
         }
         time.start()
