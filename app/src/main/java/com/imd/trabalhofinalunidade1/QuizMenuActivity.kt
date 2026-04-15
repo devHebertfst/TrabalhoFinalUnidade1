@@ -16,6 +16,10 @@ class QuizMenuActivity : AppCompatActivity() {
             startActivity(Intent(this, QuizCategoriasActivity::class.java))
         }
 
+        findViewById<Button>(R.id.btnHistoricoQuiz).setOnClickListener {
+            startActivity(Intent(this, QuizHistoricoActivity::class.java))
+        }
+
         findViewById<Button>(R.id.btnVoltarCentralQuizMenu).setOnClickListener {
             voltarParaCentral()
         }

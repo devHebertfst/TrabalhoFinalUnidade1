@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/quiz_bg"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/quiz_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/quiz_header_bg"
+            android:gravity="center"
+            android:padding="@dimen/quiz_header_padding_lg"
+            android:text="Histórico"
+            android:textColor="@color/quiz_text_header"
+            android:textSize="@dimen/text_display_sm"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtHistoricoVazio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:gravity="center"
+            android:textColor="@color/quiz_text_body"
+            android:textSize="@dimen/text_md" />
+
+        <LinearLayout
+            android:id="@+id/layoutHistoricoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/btnHistoricoVoltarMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:backgroundTint="@color/quiz_btn_secondary"
+            android:text="Voltar para o menu"
+            android:textColor="@color/quiz_btn_text" />
+
+    </LinearLayout>
+</ScrollView>

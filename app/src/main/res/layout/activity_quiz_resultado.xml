@@ -122,6 +122,15 @@
             android:textColor="@color/quiz_btn_text" />
 
         <Button
+            android:id="@+id/btnResultadoVerHistorico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quiz_btn_margin_top_sm"
+            android:backgroundTint="@color/quiz_btn_tertiary"
+            android:text="Ver histórico"
+            android:textColor="@color/quiz_btn_text" />
+
+        <Button
             android:id="@+id/btnResultadoVoltarMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

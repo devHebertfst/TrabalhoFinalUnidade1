@@ -53,6 +53,11 @@
             android:theme="@style/Theme.Quiz"
             android:exported="false" />
 
+        <activity
+            android:name=".QuizHistoricoActivity"
+            android:theme="@style/Theme.Quiz"
+            android:exported="false" />
+
     </application>
 
 </manifest>

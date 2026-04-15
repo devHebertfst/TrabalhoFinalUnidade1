@@ -38,6 +38,10 @@ class QuizResultadoActivity : AppCompatActivity() {
             finish()
         }
 
+        findViewById<Button>(R.id.btnResultadoVerHistorico).setOnClickListener {
+            startActivity(Intent(this, QuizHistoricoActivity::class.java))
+        }
+
         findViewById<Button>(R.id.btnResultadoVoltarMenu).setOnClickListener {
             val intent = Intent(this, QuizMenuActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)

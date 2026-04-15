@@ -403,6 +403,16 @@ class QuizActivity : AppCompatActivity() {
         }
 
         val tempoTotalMs = SystemClock.elapsedRealtime() - quizInicioMs
+        QuizHistoryStorage.saveEntry(
+            this,
+            QuizHistoryEntry(
+                timestamp = System.currentTimeMillis(),
+                categorias = categoriasSelecionadas,
+                pontuacao = pontuacao,
+                totalPerguntas = perguntas.size,
+                tempoTotalMs = tempoTotalMs
+            )
+        )
         val intent = Intent(this, QuizResultadoActivity::class.java).apply {
             putExtra(QuizResultadoActivity.EXTRA_PONTUACAO, pontuacao)
             putExtra(QuizResultadoActivity.EXTRA_TOTAL_PERGUNTAS, perguntas.size)
