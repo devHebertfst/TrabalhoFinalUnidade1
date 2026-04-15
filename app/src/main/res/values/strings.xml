@@ -8,6 +8,13 @@
     <string name="hub_btn_basquete">Placar de Basquete</string>
     <string name="hub_btn_calculadora">Calculadora</string>
     <string name="hub_btn_quiz">Quiz</string>
+    <string name="hub_desc_basquete">Pontuação da partida.</string>
+    <string name="hub_desc_calculadora">Contas rápidas do dia a dia.</string>
+    <string name="hub_desc_quiz">Perguntas em várias categorias.</string>
+    <string name="hub_overline">Seus apps</string>
+    <string name="hub_chip_basquete">Esporte</string>
+    <string name="hub_chip_calculadora">Utilitário</string>
+    <string name="hub_chip_quiz">Desafio</string>
     <string name="btn_voltar_central">Voltar para central</string>
 
     <!-- Basquete -->
