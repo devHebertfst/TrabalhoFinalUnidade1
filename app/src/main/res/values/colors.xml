@@ -68,6 +68,10 @@
     <color name="quiz_btn_wrong">#FFC62828</color>
     <color name="quiz_checkbox_bg">#FFFFFBF2</color>
     <color name="quiz_checkbox_text">#FF3B2200</color>
+    <color name="quiz_card_stroke">#FFD08A</color>
+    <color name="quiz_mensagem_bg">#FFF3DC</color>
+    <color name="quiz_progress_track">#FFE8BB</color>
+    <color name="quiz_text_header_muted">#FF7A3E00</color>
 
     <!-- Dark theme base -->
     <color name="dark_bg">#FF121212</color>
