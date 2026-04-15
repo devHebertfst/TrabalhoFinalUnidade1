@@ -8,6 +8,13 @@
     <string name="hub_btn_basquete">Placar de Basquete</string>
     <string name="hub_btn_calculadora">Calculadora</string>
     <string name="hub_btn_quiz">Quiz</string>
+    <string name="hub_desc_basquete">Pontuação da partida.</string>
+    <string name="hub_desc_calculadora">Contas rápidas do dia a dia.</string>
+    <string name="hub_desc_quiz">Perguntas em várias categorias.</string>
+    <string name="hub_overline">Seus apps</string>
+    <string name="hub_chip_basquete">Esporte</string>
+    <string name="hub_chip_calculadora">Utilitário</string>
+    <string name="hub_chip_quiz">Desafio</string>
     <string name="btn_voltar_central">Voltar para central</string>
 
     <!-- Basquete -->
@@ -52,6 +59,7 @@
     <string name="quiz_status_min_categoria">Marque pelo menos uma categoria</string>
     <string name="quiz_btn_comecar">Começar quiz</string>
     <string name="quiz_btn_voltar_menu">Voltar</string>
+    <string name="quiz_btn_voltar_para_menu">Voltar para o menu</string>
     <string name="quiz_categoria_geografia">Geografia</string>
     <string name="quiz_categoria_matematica">Matemática</string>
     <string name="quiz_categoria_ciencia">Ciência</string>
@@ -67,3 +75,4 @@
     <string name="quiz_resultado_titulo">Resultado</string>
     <string name="quiz_btn_jogar_novamente">Jogar novamente</string>
 </resources>
+

@@ -2,7 +2,7 @@ package com.imd.trabalhofinalunidade1
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_main)
 
-        val btnBasquete: Button = findViewById(R.id.btnAbrirBasquete)
-        val btnCalculadora: Button = findViewById(R.id.btnAbrirCalculadora)
-        val btnQuiz: Button = findViewById(R.id.btnAbrirQuiz)
+        val btnBasquete: View = findViewById(R.id.btnAbrirBasquete)
+        val btnCalculadora: View = findViewById(R.id.btnAbrirCalculadora)
+        val btnQuiz: View = findViewById(R.id.btnAbrirQuiz)
 
         val btnTema: ImageButton = findViewById(R.id.btnAlternarTema)
 

@@ -5,6 +5,19 @@
     <color name="hub_text_primary">@color/dark_text_primary</color>
     <color name="hub_text_secondary">@color/dark_text_secondary</color>
     <color name="hub_card_bg">@color/dark_surface</color>
+    <color name="hub_card_stroke">#FF353535</color>
+    <color name="hub_basquete_card_bg">#FF241818</color>
+    <color name="hub_basquete_card_stroke">#FF503030</color>
+    <color name="hub_basquete_accent">#FFFF7A7A</color>
+    <color name="hub_basquete_chip_bg">#FF3A2424</color>
+    <color name="hub_calculadora_card_bg">#FF251D16</color>
+    <color name="hub_calculadora_card_stroke">#FF4A3625</color>
+    <color name="hub_calculadora_accent">#FFFFA04D</color>
+    <color name="hub_calculadora_chip_bg">#FF382A20</color>
+    <color name="hub_quiz_card_bg">#FF282218</color>
+    <color name="hub_quiz_card_stroke">#FF55462F</color>
+    <color name="hub_quiz_accent">#FFFFC16A</color>
+    <color name="hub_quiz_chip_bg">#FF3A3123</color>
 
     <!-- Calculadora -->
     <color name="calc_display_bg">@color/dark_surface_2</color>

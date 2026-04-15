@@ -22,6 +22,14 @@
     <dimen name="hub_padding">24dp</dimen>
     <dimen name="hub_btn_margin_top">12dp</dimen>
     <dimen name="hub_btn_first_margin_top">32dp</dimen>
+    <dimen name="hub_card_padding">18dp</dimen>
+    <dimen name="hub_card_radius">18dp</dimen>
+    <dimen name="hub_card_elevation">2dp</dimen>
+    <dimen name="hub_accent_height">72dp</dimen>
+    <dimen name="hub_chip_horizontal_padding">10dp</dimen>
+    <dimen name="hub_chip_vertical_padding">4dp</dimen>
+    <dimen name="hub_arrow_size">40dp</dimen>
+    <dimen name="hub_arrow_radius">20dp</dimen>
 
     <!-- Basquete -->
     <dimen name="basquete_team_padding">30dp</dimen>
@@ -48,3 +56,4 @@
     <dimen name="quiz_checkbox_margin_top_sm">12dp</dimen>
     <dimen name="quiz_min_height">580dp</dimen>
 </resources>
+

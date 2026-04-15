@@ -6,53 +6,301 @@
     android:background="@color/hub_bg"
     android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/hub_padding">
+        android:fillViewport="true">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/hub_title"
-            android:textColor="@color/hub_text_primary"
-            android:textSize="@dimen/text_display_sm"
-            android:textStyle="bold" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/hub_padding">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_sm"
-            android:gravity="center"
-            android:text="@string/hub_subtitle"
-            android:textColor="@color/hub_text_secondary"
-            android:textSize="@dimen/text_md" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hub_overline"
+                android:textAllCaps="true"
+                android:textColor="@color/hub_text_secondary"
+                android:textSize="@dimen/text_sm"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnAbrirBasquete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/hub_btn_first_margin_top"
-            android:text="@string/hub_btn_basquete" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:gravity="center"
+                android:text="@string/hub_title"
+                android:textColor="@color/hub_text_primary"
+                android:textSize="@dimen/text_display_sm"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnAbrirCalculadora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/hub_btn_margin_top"
-            android:text="@string/hub_btn_calculadora" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:gravity="center"
+                android:text="@string/hub_subtitle"
+                android:textColor="@color/hub_text_secondary"
+                android:textSize="@dimen/text_md" />
 
-        <Button
-            android:id="@+id/btnAbrirQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/hub_btn_margin_top"
-            android:text="@string/hub_btn_quiz" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnAbrirBasquete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hub_btn_first_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/hub_basquete_card_bg"
+                app:cardCornerRadius="@dimen/hub_card_radius"
+                app:cardElevation="@dimen/hub_card_elevation"
+                app:strokeColor="@color/hub_basquete_card_stroke"
+                app:strokeWidth="1dp">
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/hub_card_padding">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="@dimen/hub_accent_height"
+                        android:layout_marginEnd="@dimen/spacing_md"
+                        android:background="@color/hub_basquete_accent" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/hub_basquete_chip_bg"
+                            android:paddingLeft="@dimen/hub_chip_horizontal_padding"
+                            android:paddingTop="@dimen/hub_chip_vertical_padding"
+                            android:paddingRight="@dimen/hub_chip_horizontal_padding"
+                            android:paddingBottom="@dimen/hub_chip_vertical_padding"
+                            android:text="@string/hub_chip_basquete"
+                            android:textAllCaps="true"
+                            android:textColor="@color/hub_basquete_accent"
+                            android:textSize="@dimen/text_sm"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_sm"
+                            android:text="@string/hub_btn_basquete"
+                            android:textColor="@color/hub_text_primary"
+                            android:textSize="@dimen/text_lg"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:text="@string/hub_desc_basquete"
+                            android:textColor="@color/hub_text_secondary"
+                            android:textSize="@dimen/text_sm" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/hub_arrow_size"
+                        android:layout_height="@dimen/hub_arrow_size"
+                        app:cardBackgroundColor="@color/hub_basquete_chip_bg"
+                        app:cardCornerRadius="@dimen/hub_arrow_radius"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:padding="10dp"
+                            android:src="@drawable/outline_arrow_forward_ios_24"
+                            app:tint="@color/hub_basquete_accent" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnAbrirCalculadora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hub_btn_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/hub_calculadora_card_bg"
+                app:cardCornerRadius="@dimen/hub_card_radius"
+                app:cardElevation="@dimen/hub_card_elevation"
+                app:strokeColor="@color/hub_calculadora_card_stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/hub_card_padding">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="@dimen/hub_accent_height"
+                        android:layout_marginEnd="@dimen/spacing_md"
+                        android:background="@color/hub_calculadora_accent" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/hub_calculadora_chip_bg"
+                            android:paddingLeft="@dimen/hub_chip_horizontal_padding"
+                            android:paddingTop="@dimen/hub_chip_vertical_padding"
+                            android:paddingRight="@dimen/hub_chip_horizontal_padding"
+                            android:paddingBottom="@dimen/hub_chip_vertical_padding"
+                            android:text="@string/hub_chip_calculadora"
+                            android:textAllCaps="true"
+                            android:textColor="@color/hub_calculadora_accent"
+                            android:textSize="@dimen/text_sm"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_sm"
+                            android:text="@string/hub_btn_calculadora"
+                            android:textColor="@color/hub_text_primary"
+                            android:textSize="@dimen/text_lg"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:text="@string/hub_desc_calculadora"
+                            android:textColor="@color/hub_text_secondary"
+                            android:textSize="@dimen/text_sm" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/hub_arrow_size"
+                        android:layout_height="@dimen/hub_arrow_size"
+                        app:cardBackgroundColor="@color/hub_calculadora_chip_bg"
+                        app:cardCornerRadius="@dimen/hub_arrow_radius"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:padding="10dp"
+                            android:src="@drawable/outline_arrow_forward_ios_24"
+                            app:tint="@color/hub_calculadora_accent" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnAbrirQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/hub_btn_margin_top"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/hub_quiz_card_bg"
+                app:cardCornerRadius="@dimen/hub_card_radius"
+                app:cardElevation="@dimen/hub_card_elevation"
+                app:strokeColor="@color/hub_quiz_card_stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/hub_card_padding">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="@dimen/hub_accent_height"
+                        android:layout_marginEnd="@dimen/spacing_md"
+                        android:background="@color/hub_quiz_accent" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/hub_quiz_chip_bg"
+                            android:paddingLeft="@dimen/hub_chip_horizontal_padding"
+                            android:paddingTop="@dimen/hub_chip_vertical_padding"
+                            android:paddingRight="@dimen/hub_chip_horizontal_padding"
+                            android:paddingBottom="@dimen/hub_chip_vertical_padding"
+                            android:text="@string/hub_chip_quiz"
+                            android:textAllCaps="true"
+                            android:textColor="@color/hub_quiz_accent"
+                            android:textSize="@dimen/text_sm"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_sm"
+                            android:text="@string/hub_btn_quiz"
+                            android:textColor="@color/hub_text_primary"
+                            android:textSize="@dimen/text_lg"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:text="@string/hub_desc_quiz"
+                            android:textColor="@color/hub_text_secondary"
+                            android:textSize="@dimen/text_sm" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/hub_arrow_size"
+                        android:layout_height="@dimen/hub_arrow_size"
+                        app:cardBackgroundColor="@color/hub_quiz_chip_bg"
+                        app:cardCornerRadius="@dimen/hub_arrow_radius"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:padding="10dp"
+                            android:src="@drawable/outline_arrow_forward_ios_24"
+                            app:tint="@color/hub_quiz_accent" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
 
     <ImageButton
         android:id="@+id/btnAlternarTema"

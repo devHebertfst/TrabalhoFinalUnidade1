@@ -1,112 +1,127 @@
 package com.imd.trabalhofinalunidade1
 
-import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.DecelerateInterpolator
-import android.view.animation.OvershootInterpolator
 import android.widget.Button
-import android.widget.ProgressBar
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import org.json.JSONArray
+
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.xml.KonfettiView
 import java.util.concurrent.TimeUnit
-import android.util.Log
 
 class QuizResultadoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("QUIZ", "ENTREI NA RESULTADO")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_resultado)
 
-        val pontuacao = intent.getIntExtra("pontuacao", 0)
-        val total = intent.getIntExtra("total", 0)
-        val porcentagem = if (total > 0) (pontuacao * 100) / total else 0
+        val pontuacao = intent.getIntExtra(EXTRA_PONTUACAO, 0)
+        val totalPerguntas = intent.getIntExtra(EXTRA_TOTAL_PERGUNTAS, 0)
+        val tempoTotalMs = intent.getLongExtra(EXTRA_TEMPO_TOTAL_MS, 0L)
+        val categorias = intent.getStringArrayListExtra(EXTRA_CATEGORIAS).orEmpty()
+        val revisaoErradasJson = intent.getStringExtra(EXTRA_REVISAO_ERRADAS_JSON)
 
-        val tvMensagem       = findViewById<TextView>(R.id.tvMensagemResultado)
-        val tvPontuacao      = findViewById<TextView>(R.id.tvPontuacaoResultado)
-        val tvTotal          = findViewById<TextView>(R.id.tvTotalResultado)
-        val tvAproveitamento = findViewById<TextView>(R.id.tvAproveitamento)
-        val progressBar      = findViewById<ProgressBar>(R.id.progressBarResultado)
-        val btnJogarNovamente = findViewById<Button>(R.id.btnJogarNovamente)
-        val btnVoltar        = findViewById<Button>(R.id.btnVoltarCentralQuizMenu)
-        val konfettiView     = findViewById<KonfettiView>(R.id.konfettiView)
-
-        // Mensagem de acordo com desempenho
-        tvMensagem.text = when {
-            pontuacao == total          -> "Perfeito! Você é um gênio absoluto!"
-            porcentagem >= 70           -> "Mandou muito bem! Continue assim!"
-            porcentagem >= 40           -> "Nada mal! Continue treinando!"
-            else                        -> "Bora estudar mais um pouco..."
+        val percentual = if (totalPerguntas > 0) {
+            (pontuacao * 100) / totalPerguntas
+        } else {
+            0
         }
 
+        findViewById<TextView>(R.id.txtResultadoCategorias).text =
+            "Categorias: ${categorias.joinToString(", ")}"
 
-        tvTotal.text = "de $total"
-        tvAproveitamento.text = "$porcentagem% de aproveitamento"
+        findViewById<TextView>(R.id.txtResultadoPontuacao).text =
+            "$pontuacao / $totalPerguntas"
 
-        animarContador(tvPontuacao, 0, pontuacao, 900)
+        findViewById<TextView>(R.id.txtResultadoPercentual).text =
+            "$percentual%"
 
-        animarProgressBar(progressBar, 0, porcentagem, 1000)
+        findViewById<TextView>(R.id.txtResultadoTempo).text =
+            formatarTempo(tempoTotalMs)
 
-        animarEntrada(tvMensagem,        0)
-        animarEntrada(tvAproveitamento, 200)
-        animarEntrada(progressBar,      350)
-        animarEntrada(btnJogarNovamente,450)
-        animarEntrada(btnVoltar,        550)
+        renderizarRevisaoRespostas(revisaoErradasJson)
 
-        if (porcentagem >= 40) {
-            dispararConfete(konfettiView, porcentagem)
+        // Confete (já existia no seu código)
+        val konfettiView = findViewById<KonfettiView>(R.id.konfettiView)
+        if (percentual >= 40) {
+            dispararConfete(konfettiView, percentual)
         }
 
-        btnJogarNovamente.setOnClickListener { finish() }
-        btnVoltar.setOnClickListener { finish() }
-    }
-
-    private fun animarContador(tv: TextView, start: Int, end: Int, duracao: Long) {
-        val animator = ValueAnimator.ofInt(start, end).apply {
-            duration = duracao
-            interpolator = DecelerateInterpolator()
-            addUpdateListener { tv.text = it.animatedValue.toString() }
+        findViewById<Button>(R.id.btnResultadoJogarNovamente).setOnClickListener {
+            val intent = Intent(this, QuizCategoriasActivity::class.java)
+            startActivity(intent)
+            finish()
         }
-        animator.start()
 
-        tv.scaleX = 0.3f
-        tv.scaleY = 0.3f
-        tv.alpha  = 0f
-        tv.animate()
-            .scaleX(1f).scaleY(1f).alpha(1f)
-            .setDuration(600)
-            .setInterpolator(OvershootInterpolator(1.5f))
-            .start()
-    }
-
-    private fun animarProgressBar(pb: ProgressBar, start: Int, end: Int, duracao: Long) {
-        pb.progress = start
-        val animator = ValueAnimator.ofInt(start, end).apply {
-            duration = duracao
-            interpolator = DecelerateInterpolator()
-            addUpdateListener { pb.progress = it.animatedValue as Int }
+        findViewById<Button>(R.id.btnResultadoVerHistorico).setOnClickListener {
+            startActivity(Intent(this, QuizHistoricoActivity::class.java))
         }
-        animator.startDelay = 300
-        animator.start()
+
+        findViewById<Button>(R.id.btnResultadoVoltarMenu).setOnClickListener {
+            val intent = Intent(this, QuizMenuActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            }
+            startActivity(intent)
+            finish()
+        }
     }
 
-    private fun animarEntrada(view: View, delayMs: Long) {
-        view.alpha       = 0f
-        view.translationY = 24f
-        view.animate()
-            .alpha(1f)
-            .translationY(0f)
-            .setDuration(500)
-            .setStartDelay(delayMs)
-            .setInterpolator(DecelerateInterpolator())
-            .start()
+    private fun formatarTempo(tempoTotalMs: Long): String {
+        val totalSegundos = (tempoTotalMs / 1000).toInt()
+        val minutos = totalSegundos / 60
+        val segundos = totalSegundos % 60
+        return String.format("%02d:%02d", minutos, segundos)
     }
 
+    private fun renderizarRevisaoRespostas(raw: String?) {
+        if (raw.isNullOrBlank()) return
+
+        val jsonArray = JSONArray(raw)
+        if (jsonArray.length() == 0) return
+
+        val titulo = findViewById<TextView>(R.id.txtTituloRevisaoErradas)
+        val container = findViewById<LinearLayout>(R.id.layoutRevisaoErradas)
+        val inflater = LayoutInflater.from(this)
+
+        titulo.visibility = View.VISIBLE
+
+        for (index in 0 until jsonArray.length()) {
+            val item = jsonArray.getJSONObject(index)
+            val view = inflater.inflate(R.layout.item_quiz_revisao, container, false)
+            val acertou = item.getBoolean("acertou")
+
+            view.findViewById<TextView>(R.id.txtRevisaoPergunta).text =
+                "${index + 1}. ${item.getString("pergunta")}"
+
+            view.findViewById<TextView>(R.id.txtRevisaoStatus).apply {
+                text = if (acertou) "Acertou" else "Errou"
+                setTextColor(
+                    ContextCompat.getColor(
+                        this@QuizResultadoActivity,
+                        if (acertou) R.color.quiz_btn_correct else R.color.quiz_btn_wrong
+                    )
+                )
+            }
+
+            view.findViewById<TextView>(R.id.txtRevisaoRespostaUsuario).text =
+                "Sua resposta: ${item.getString("respostaUsuario")}"
+
+            view.findViewById<TextView>(R.id.txtRevisaoRespostaCorreta).text =
+                "Correta: ${item.getString("respostaCorreta")}"
+
+            container.addView(view)
+        }
+    }
+
+    // Confete (exatamente do seu código, sem invenção)
     private fun dispararConfete(konfettiView: KonfettiView, porcentagem: Int) {
         val cores = listOf(
             0xFFE07A1F.toInt(),
@@ -135,5 +150,13 @@ class QuizResultadoActivity : AppCompatActivity() {
         )
 
         konfettiView.start(party)
+    }
+
+    companion object {
+        const val EXTRA_PONTUACAO = "pontuacao"
+        const val EXTRA_TOTAL_PERGUNTAS = "total_perguntas"
+        const val EXTRA_TEMPO_TOTAL_MS = "tempo_total_ms"
+        const val EXTRA_CATEGORIAS = "categorias"
+        const val EXTRA_REVISAO_ERRADAS_JSON = "revisao_erradas_json"
     }
 }
