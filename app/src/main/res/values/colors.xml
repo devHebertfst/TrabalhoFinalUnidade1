@@ -72,6 +72,7 @@
     <color name="quiz_mensagem_bg">#FFF3DC</color>
     <color name="quiz_progress_track">#FFE8BB</color>
     <color name="quiz_text_header_muted">#FF7A3E00</color>
+    <color name="quiz_result_highlight_bg">#FFFFF0D2</color>
 
     <!-- Dark theme base -->
     <color name="dark_bg">#FF121212</color>

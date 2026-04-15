@@ -14,11 +14,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/quiz_header_bg"
+            android:background="@drawable/bg_quiz_result_highlight"
             android:gravity="center"
             android:padding="@dimen/quiz_header_padding_lg"
             android:text="Histórico"
-            android:textColor="@color/quiz_text_header"
+            android:textColor="@color/quiz_text_question"
             android:textSize="@dimen/text_display_sm"
             android:textStyle="bold" />
 

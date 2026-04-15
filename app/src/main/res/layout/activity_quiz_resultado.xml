@@ -18,11 +18,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/quiz_header_bg"
+                android:background="@drawable/bg_quiz_result_highlight"
                 android:gravity="center"
                 android:padding="@dimen/quiz_header_padding_lg"
                 android:text="Resultado Final"
-                android:textColor="@color/quiz_text_header"
+                android:textColor="@color/quiz_text_question"
                 android:textSize="@dimen/text_display_sm"
                 android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:background="@color/white"
+                android:background="@drawable/bg_quiz_result_highlight"
                 android:gravity="center"
                 android:padding="20dp"
                 android:textColor="@color/quiz_text_question"
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/spacing_sm"
                     android:layout_weight="1"
-                    android:background="@color/white"
+                    android:background="@drawable/bg_quiz_result_card"
                     android:orientation="vertical"
                     android:padding="18dp">
 
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_sm"
                     android:layout_weight="1"
-                    android:background="@color/white"
+                    android:background="@drawable/bg_quiz_result_card"
                     android:orientation="vertical"
                     android:padding="18dp">
 

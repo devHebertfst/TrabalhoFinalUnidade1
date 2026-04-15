@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    android:background="@color/white"
+    android:background="@drawable/bg_quiz_result_card"
     android:orientation="vertical"
     android:padding="18dp">
 
