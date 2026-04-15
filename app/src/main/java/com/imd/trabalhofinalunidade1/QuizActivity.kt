@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.json.JSONArray
+import org.json.JSONObject
 
 class QuizActivity : AppCompatActivity() {
 
@@ -27,6 +29,13 @@ class QuizActivity : AppCompatActivity() {
         val alternativas: List<String>,
         val correta: String,
         val nivel: String
+    )
+
+    private data class AnswerReview(
+        val pergunta: String,
+        val respostaUsuario: String,
+        val respostaCorreta: String,
+        val acertou: Boolean
     )
 
     private lateinit var tvCategoria: TextView
@@ -62,6 +71,7 @@ class QuizActivity : AppCompatActivity() {
     private var pontuacao = 0
     private var respondeuAtual = false
     private var respostaSelecionadaAtual: String? = null
+    private val respostasRevisao = mutableListOf<AnswerReview>()
     private var dialogAberto = false
     private var timeoutPendente = false
     private var quizInicioMs = 0L
@@ -117,6 +127,10 @@ class QuizActivity : AppCompatActivity() {
             pontuacao = savedInstanceState.getInt("pontuacao", 0)
             respondeuAtual = savedInstanceState.getBoolean("respondeuAtual", false)
             respostaSelecionadaAtual = savedInstanceState.getString("respostaSelecionadaAtual")
+            respostasRevisao.clear()
+            respostasRevisao.addAll(
+                deserializeAnswers(savedInstanceState.getString("respostasRevisaoJson"))
+            )
             quizInicioMs = savedInstanceState.getLong("quizInicioMs", 0L)
             categoriasSelecionadas =
                 savedInstanceState.getStringArrayList("categoriasSelecionadas") ?: categoriasSelecionadas
@@ -174,8 +188,24 @@ class QuizActivity : AppCompatActivity() {
 
         if (respostaEscolhida == perguntaAtual.correta) {
             pontuacao++
+            respostasRevisao.add(
+                AnswerReview(
+                    pergunta = perguntaAtual.enunciado,
+                    respostaUsuario = respostaEscolhida,
+                    respostaCorreta = perguntaAtual.correta,
+                    acertou = true
+                )
+            )
             tvStatus.text = "Resposta correta"
         } else {
+            respostasRevisao.add(
+                AnswerReview(
+                    pergunta = perguntaAtual.enunciado,
+                    respostaUsuario = respostaEscolhida,
+                    respostaCorreta = perguntaAtual.correta,
+                    acertou = false
+                )
+            )
             tvStatus.text = "Resposta errada. Correta: ${perguntaAtual.correta}"
         }
 
@@ -197,6 +227,14 @@ class QuizActivity : AppCompatActivity() {
         respondeuAtual = true
         respostaSelecionadaAtual = null
         timeoutPendente = false
+        respostasRevisao.add(
+            AnswerReview(
+                pergunta = perguntaAtual.enunciado,
+                respostaUsuario = "Tempo esgotado",
+                respostaCorreta = perguntaAtual.correta,
+                acertou = false
+            )
+        )
         tvStatus.text = "Tempo encerrado. Correta: ${perguntaAtual.correta}"
         atualizarFeedbackRespostas(null, perguntaAtual.correta)
         atualizarProgresso(indiceAtual + 1)
@@ -314,6 +352,7 @@ class QuizActivity : AppCompatActivity() {
         outState.putInt("pontuacao", pontuacao)
         outState.putBoolean("respondeuAtual", respondeuAtual)
         outState.putString("respostaSelecionadaAtual", respostaSelecionadaAtual)
+        outState.putString("respostasRevisaoJson", serializeAnswers(respostasRevisao))
         outState.putLong("quizInicioMs", quizInicioMs)
         outState.putStringArrayList("categoriasSelecionadas", ArrayList(categoriasSelecionadas))
     }
@@ -417,6 +456,10 @@ class QuizActivity : AppCompatActivity() {
             putExtra(QuizResultadoActivity.EXTRA_PONTUACAO, pontuacao)
             putExtra(QuizResultadoActivity.EXTRA_TOTAL_PERGUNTAS, perguntas.size)
             putExtra(QuizResultadoActivity.EXTRA_TEMPO_TOTAL_MS, tempoTotalMs)
+            putExtra(
+                QuizResultadoActivity.EXTRA_REVISAO_ERRADAS_JSON,
+                serializeAnswers(respostasRevisao)
+            )
             putStringArrayListExtra(
                 QuizResultadoActivity.EXTRA_CATEGORIAS,
                 ArrayList(categoriasSelecionadas)
@@ -424,6 +467,40 @@ class QuizActivity : AppCompatActivity() {
         }
         startActivity(intent)
         finish()
+    }
+
+    private fun serializeAnswers(items: List<AnswerReview>): String {
+        val jsonArray = JSONArray()
+        items.forEach { item ->
+            jsonArray.put(
+                JSONObject().apply {
+                    put("pergunta", item.pergunta)
+                    put("respostaUsuario", item.respostaUsuario)
+                    put("respostaCorreta", item.respostaCorreta)
+                    put("acertou", item.acertou)
+                }
+            )
+        }
+        return jsonArray.toString()
+    }
+
+    private fun deserializeAnswers(raw: String?): List<AnswerReview> {
+        if (raw.isNullOrBlank()) return emptyList()
+
+        val jsonArray = JSONArray(raw)
+        return buildList {
+            for (index in 0 until jsonArray.length()) {
+                val item = jsonArray.getJSONObject(index)
+                add(
+                    AnswerReview(
+                        pergunta = item.getString("pergunta"),
+                        respostaUsuario = item.getString("respostaUsuario"),
+                        respostaCorreta = item.getString("respostaCorreta"),
+                        acertou = item.getBoolean("acertou")
+                    )
+                )
+            }
+        }
     }
 
     private fun geografiaQuestions() = listOf(
